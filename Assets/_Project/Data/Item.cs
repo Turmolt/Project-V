@@ -5,7 +5,7 @@
 public class Item: ScriptableObject   {
     
     [SerializeField] private string _name;
-    public Sprite Icon;
+    public Sprite Image;
     public string ItemName{
         get{
             return _name;
@@ -21,10 +21,11 @@ public class Item: ScriptableObject   {
     public float Quality;
     
     
-    public Item(ItemType type, ItemMaterial material, float quality, Sprite icon = null){
+    
+    public Item(ItemType type, ItemMaterial material, float quality, Sprite image = null){
         Type = type;
         Material = material;
         Quality = quality;
-        Icon = icon; 
+        Image = image; 
     }
 }
