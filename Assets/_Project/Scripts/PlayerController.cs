@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace BackwardsCap
 {
@@ -17,6 +18,10 @@ namespace BackwardsCap
 
         private Vector2 movement;
 
+        public GameObject Dbg;
+
+        private float maxPickupDistance = 2f;
+
         public void Start()
         {
             mainCam = Camera.main;
@@ -32,8 +37,64 @@ namespace BackwardsCap
 
             MouseHandler();
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickupItem();
+            }
+
             Movement();
         }
+
+        void PickupItem()
+        {
+            var rayPos = new Vector3(transform.position.x, transform.position.y, -5f) + InteractDirection();
+            RaycastHit2D hit= Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
+            if (hit.transform != null && hit.transform.CompareTag("Item"))
+            {
+                var item = hit.transform.GetComponent<Item>();
+                Inventory.PickupItem(item);
+                return;
+            }
+
+            rayPos = new Vector3(transform.position.x, transform.position.y, -5f);
+            hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
+            if (hit.transform != null && hit.transform.CompareTag("Item"))
+            {
+                var item = hit.transform.GetComponent<Item>();
+                Inventory.PickupItem(item);
+                return;
+            }
+        }
+
+        bool CheckDirection(string dir)
+        {
+            return PlayerAnimator.Animator.GetCurrentAnimatorStateInfo(0).IsName(dir + " Idle") ||
+                   PlayerAnimator.Animator.GetCurrentAnimatorStateInfo(0).IsName(dir + " Walk");
+        } 
+
+        public Vector3 InteractDirection()
+        {
+            if (CheckDirection("Back"))
+            {
+                return new Vector2(0,1);
+            }
+            if (CheckDirection("Forward"))
+            {
+                return new Vector2(0, -1);
+            }
+            if (CheckDirection("Right"))
+            {
+                return new Vector2(1, 0);
+            }
+            if (CheckDirection("Left"))
+            {
+                return new Vector2(-1, 0);
+            }
+
+            Debug.LogError("[PlayerController]: No interaction direction found!");
+            return Vector3.zero;
+        }
+
 
         void MouseHandler()
         {
@@ -41,14 +102,22 @@ namespace BackwardsCap
             {
                 var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 Ray r = mainCam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero);
+                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Items"));
 
                 if (hit.transform != null)
                 {
                     if (hit.transform.CompareTag("Item"))
                     {
-                        var item = hit.transform.GetComponent<Item>();
-                        Inventory.PickupItem(item);
+                        var distance = Vector3.Distance(transform.position.xy(0), hit.transform.position.xy(0));
+                        if (distance < maxPickupDistance)
+                        {
+                            var item = hit.transform.GetComponent<Item>();
+                            Inventory.PickupItem(item);
+                        }
+                        else
+                        {
+                            Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
+                        }
                     }
                 }
             }
