@@ -8,6 +8,10 @@ public class NPC: MonoBehaviour   {
     //Randomly determine what Gear each monster already has (always missing at least 1)
     //
     public Sprite Image;
+
+    public Canvas RequestCanvas;
+
+    private GameObject requestObject;
     
     public ItemType? TypeWanted = null;
     public ItemMaterial? MaterialWanted = null;
@@ -22,7 +26,14 @@ public class NPC: MonoBehaviour   {
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
         createNeed();
+    }
+    private void Start() {
+        RequestCanvas = Instantiate(RequestCanvas, this.transform);
+        //RequestCanvas = GetComponentInChildren<Canvas>();
+        RequestCanvas.enabled = false;
         
+        
+        displayRequest();
     }
     private void createNeed(){
         TypeWanted = null;
@@ -83,12 +94,11 @@ public class NPC: MonoBehaviour   {
         print(TypeWanted + ", " + MaterialWanted +", " + MinimumQuality);
     }
 
-
     private void randomQuality(){
         MinimumQuality = Random.Range(0.5f,1.0f);
     }
     private void randomType(){
-        TypeWanted = (ItemType)Random.Range(0,_manager.NumberOfItemTypes); 
+        TypeWanted = (ItemType)Random.Range(2,_manager.NumberOfItemTypes); 
     }
     private void randomMaterial(){
         if(TypeWanted == null){
@@ -104,9 +114,6 @@ public class NPC: MonoBehaviour   {
                 case ItemType.Mace:
                     MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
                     break;
-                case ItemType.Shield:
-                    MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
-                    break;
                 case ItemType.Spear:
                     MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
                     break;
@@ -115,6 +122,9 @@ public class NPC: MonoBehaviour   {
                     break;
                 case ItemType.HeavyArmor:
                     MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
+                    break;
+                case ItemType.Shield:
+                    MaterialWanted = (ItemMaterial)Random.Range(3,_manager.NumberOfMaterials-1);
                     break;
                 case ItemType.Bow:
                      MaterialWanted = (ItemMaterial)Random.Range(3,_manager.NumberOfMaterials-1);
@@ -125,14 +135,16 @@ public class NPC: MonoBehaviour   {
                 case ItemType.Staff:
                     MaterialWanted = (ItemMaterial)Random.Range(4,_manager.NumberOfMaterials);
                     break;
+                //I've adjusted the Robe and Leather Armor to ONLY be requested at Tiers 3 and 4 due to
+                //Difficulty finding "Material" solo sprite for Light and Tough
                 case ItemType.Robe:
-                    int temp = Random.Range(0,4);
-                    if (temp>2) temp +=2; 
+                    int temp = Random.Range(2,4);
+                    //if (temp>2) temp +=2; 
                     MaterialWanted = (ItemMaterial)(temp);
                     break;
                 case ItemType.LeatherArmor:
-                    int temp2 = Random.Range(0,4);
-                    if (temp2>2) temp2 +=2; 
+                    int temp2 = Random.Range(2,4);
+                    //if (temp2>2) temp2 +=2; 
                     MaterialWanted = (ItemMaterial)(temp2);
                     break;
 
@@ -141,9 +153,7 @@ public class NPC: MonoBehaviour   {
         }
         
     }
-    
-
-    
+      
     public NPC(ItemType type, ItemMaterial material, float scoreMultiplier, Sprite image = null){
         TypeWanted = type;
         MaterialWanted = material;
@@ -151,5 +161,64 @@ public class NPC: MonoBehaviour   {
         Image = image; 
     }
 
+    public void displayRequest(){
+        RequestCanvas.enabled = true;
+        Transform bubble = RequestCanvas.transform.Find("SpeechBubble");
+        if (requestObject == null){
+            if(wants[0] == 1 && wants[1] == 1){
+                //Mat and Type
+                foreach(GameObject item in _manager.ItemList){
+                    Item temp = item.GetComponent<Item>();
+                    if(temp.Material == MaterialWanted && temp.Type == TypeWanted){
+                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                        //Item temp2 = obj.GetComponent<Item>();
+                        // if(MinimumQuality != null){
+                        //     temp2.Quality = (float)MinimumQuality;
+                        // } else{
+                        //     Canvas qualityCan = obj.GetComponentInChildren<Canvas>();
+                        //     qualityCan.enabled = false;
+                        // }
+                        
+                        
+                        break;
+                    }
+                }
+            } else if(wants[0] == 1){
+                //Type Only
+
+            } else if(wants[1] == 1){
+                //Mats Only
+                foreach (GameObject item in _manager.MaterialList){
+                    Item temp = item.GetComponent<Item>();
+                    if(temp.Material == MaterialWanted){
+                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                    }
+
+                }
+
+            }
+            if(wants[2] == 1){
+                if(requestObject){
+                    Item temp = requestObject.GetComponent<Item>();
+                    temp.Quality = (float)MinimumQuality;
+                }
+                
+            } else{
+                if(requestObject){
+                    Canvas qualityCan = requestObject.GetComponentInChildren<Canvas>();
+                    qualityCan.enabled = false;
+                }
+            }
+            if(requestObject){
+                requestObject.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+            }
+            
+        }
+
+        //TODO: Material only items are spawning with incorrect Quality being shown on bar. Need to fix
+        
+        
+        
+    }
     
 }

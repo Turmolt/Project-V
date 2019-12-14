@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: b86c71256e65c1f488a27fdac0fc3d52
-timeCreated: 1576272038
-licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Image: {instanceID: 0}
+  - RequestCanvas: {fileID: 4094301063146681139, guid: a91189236567c1941baa7dd89c8daebc,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
