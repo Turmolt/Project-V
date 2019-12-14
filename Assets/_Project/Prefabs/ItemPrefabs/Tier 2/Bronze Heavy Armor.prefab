@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1894109333877494845}
   - component: {fileID: 1894109333877494834}
   m_Layer: 0
-  m_Name: Bronze Sword 1
+  m_Name: Bronze Heavy Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456da0953d6ca64c8b4d019601b8bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QualityBar: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
+    type: 3}
   Type: 7
   Material: 3
   Rarity: 4
-  Quality: 1

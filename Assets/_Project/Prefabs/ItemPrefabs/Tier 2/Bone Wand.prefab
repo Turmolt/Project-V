@@ -93,7 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456da0953d6ca64c8b4d019601b8bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QualityBar: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
+    type: 3}
   Type: 14
   Material: 7
   Rarity: 4
-  Quality: 1

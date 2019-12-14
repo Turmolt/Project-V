@@ -22,11 +22,6 @@ public class NPC: MonoBehaviour   {
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
         createNeed();
-        createNeed();
-        createNeed();
-        createNeed();
-        createNeed();
-        createNeed();
         
     }
     private void createNeed(){
