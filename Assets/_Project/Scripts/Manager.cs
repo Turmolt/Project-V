@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 public class Manager: MonoBehaviour
 {
     public  GameObject[] ItemList;
+    public GameObject[] MaterialList;
+    public GameObject[] TypeList;
     private int[] ItemRarity = new int[0];
     private int totalItemWeight;
     public  int NumberOfMaterials = 8;

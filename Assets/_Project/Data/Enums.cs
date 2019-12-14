@@ -27,8 +27,8 @@ public enum ItemType{
 	//Accessories
 	Ring = 11,
 	Necklace = 12,
-	Boots = 13
-
+	Boots = 13,
+	nil = -1
 }
 //If we use item subtypes:
 /*
