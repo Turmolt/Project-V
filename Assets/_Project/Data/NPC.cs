@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "NPC")]
 public class NPC: MonoBehaviour   {
     
     [SerializeField] private string _name;
