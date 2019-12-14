@@ -14,14 +14,14 @@ public enum ItemType{
 	Sword = 0,
 	Dagger = 1,
 	Axe = 2,
-	Bow = 3,
-	Staff = 4,
 	Mace = 5,
 	Spear = 6,
+	Bow = 3,
+	Staff = 4,
 	Wand = 14,
 	//Armor
-	Heavy = 7,
-	Light = 8,
+	HeavyArmor = 7,
+	LightArmor = 8,
 	Robe = 9,
 	Shield = 10,
 	//Accessories
@@ -56,14 +56,16 @@ public enum AccessoryType{
 */
 
 public enum ItemMaterial{
-	Wood = 0,
-	Cloth = 1,
+	
+	Cloth = 0,
+	Leather = 1,
 	Iron = 2,
-	Leather = 3,
-	Bone = 4,
-	Bronze = 5,
-	DarkSteel = 6,
-	Gold = 7
+	Bronze = 3,
+	DarkSteel = 4,
+	Gold = 5,
+	Wood = 6,
+	Bone = 7,
+	
 	
 	
 	
