@@ -21,7 +21,7 @@ public enum ItemType{
 	Wand = 14,
 	//Armor
 	HeavyArmor = 7,
-	LightArmor = 8,
+	LeatherArmor = 8,
 	Robe = 9,
 	Shield = 10,
 	//Accessories
@@ -57,11 +57,11 @@ public enum AccessoryType{
 
 public enum ItemMaterial{
 	
-	Cloth = 0,
-	Leather = 1,
+	Light = 0,
+	Tough = 1,
 	Iron = 2,
 	Bronze = 3,
-	DarkSteel = 4,
+	Dark = 4,
 	Gold = 5,
 	Wood = 6,
 	Bone = 7,

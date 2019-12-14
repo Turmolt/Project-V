@@ -94,6 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  Material: 5
+  Material: 3
   Rarity: 4
   Quality: 1

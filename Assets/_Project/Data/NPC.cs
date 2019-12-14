@@ -22,6 +22,12 @@ public class NPC: MonoBehaviour   {
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
         createNeed();
+        createNeed();
+        createNeed();
+        createNeed();
+        createNeed();
+        createNeed();
+        
     }
     private void createNeed(){
         TypeWanted = null;
@@ -112,6 +118,9 @@ public class NPC: MonoBehaviour   {
                 case ItemType.Sword:
                     MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
                     break;
+                case ItemType.HeavyArmor:
+                    MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials-2);
+                    break;
                 case ItemType.Bow:
                      MaterialWanted = (ItemMaterial)Random.Range(3,_manager.NumberOfMaterials-1);
                     break;
@@ -120,6 +129,16 @@ public class NPC: MonoBehaviour   {
                     break;
                 case ItemType.Staff:
                     MaterialWanted = (ItemMaterial)Random.Range(4,_manager.NumberOfMaterials);
+                    break;
+                case ItemType.Robe:
+                    int temp = Random.Range(0,4);
+                    if (temp>2) temp +=2; 
+                    MaterialWanted = (ItemMaterial)(temp);
+                    break;
+                case ItemType.LeatherArmor:
+                    int temp2 = Random.Range(0,4);
+                    if (temp2>2) temp2 +=2; 
+                    MaterialWanted = (ItemMaterial)(temp2);
                     break;
 
                 default: break;
