@@ -1,24 +1,32 @@
 ﻿using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Item")]
-public class Item: ScriptableObject   {
+public class Item: MonoBehaviour   {
     
-    [SerializeField] private string _name;
-    public Sprite Image;
-    public string ItemName{
-        get{
-            return _name;
+    private Sprite _image;
+    
+    public Sprite Image{
+        set{
+            _image = value;
+            SpriteRenderer rend = GetComponent<SpriteRenderer>();
+            if(rend.sprite == null) rend.sprite = value;
         }
-        set {
-            _name = value;
-            this.name = value;
+        get{
+            return _image;
         }
     }
     
     public ItemType Type;
     public ItemMaterial Material;
+
+    public int Rarity;
     public float Quality;
+
+    private void Awake() {
+        SpriteRenderer rend = GetComponent<SpriteRenderer>();
+        if(rend.sprite == null) rend.sprite = Image;
+        else Image = rend.sprite;
+    }
     
     
     
