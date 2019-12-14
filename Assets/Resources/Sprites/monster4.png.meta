@@ -22,22 +22,22 @@ TextureImporter:
     second: monster4_5
   - first:
       213: -6063076452155540104
-    second: monster4_6
+    second: zombie_f1
   - first:
       213: 1880763209359424529
-    second: monster4_7
+    second: zombie_f2
   - first:
       213: -4722953350680114862
-    second: monster4_8
+    second: zombief3
   - first:
       213: 6628156393917105027
-    second: monster4_9
+    second: skel_f1
   - first:
       213: -3081212464156720553
-    second: monster4_10
+    second: skel_f2
   - first:
       213: -1264932348664778487
-    second: monster4_11
+    second: skel_f3
   - first:
       213: 2408324739698931381
     second: monster4_12
@@ -76,22 +76,22 @@ TextureImporter:
     second: monster4_23
   - first:
       213: -2371853062618682507
-    second: monster4_24
+    second: zombie_l1
   - first:
       213: 732489652322676653
-    second: monster4_25
+    second: zombie_l2
   - first:
       213: -2935436887323172946
-    second: monster4_26
+    second: zombie_l3
   - first:
       213: 8406339151578413378
-    second: monster4_27
+    second: skel_l1
   - first:
       213: 6673461990408007241
-    second: monster4_28
+    second: skel_l2
   - first:
       213: -4012747818362712908
-    second: monster4_29
+    second: skel_l3
   - first:
       213: -3559799392144027674
     second: monster4_30
@@ -130,22 +130,22 @@ TextureImporter:
     second: monster4_41
   - first:
       213: -7521144326284164815
-    second: monster4_42
+    second: zombie_r1
   - first:
       213: -3296859742931607867
-    second: monster4_43
+    second: zombie_r2
   - first:
       213: -3433088150356902121
-    second: monster4_44
+    second: zombie_r3
   - first:
       213: -5123504027369831307
-    second: monster4_45
+    second: skel_r1
   - first:
       213: 332063949348688435
-    second: monster4_46
+    second: skel_r2
   - first:
       213: -7894054326608894437
-    second: monster4_47
+    second: skel_r3
   - first:
       213: 2528748044283106136
     second: monster4_48
@@ -184,22 +184,22 @@ TextureImporter:
     second: monster4_59
   - first:
       213: -6909379849271644595
-    second: monster4_60
+    second: zombie_b1
   - first:
       213: 612312591207471530
-    second: monster4_61
+    second: zombie_b2
   - first:
       213: -6404174324433111299
-    second: monster4_62
+    second: zombie_b3
   - first:
       213: 4763011040477816865
-    second: monster4_63
+    second: skel_b1
   - first:
       213: -4099700760273389418
-    second: monster4_64
+    second: skel_b2
   - first:
       213: -7524168402832761757
-    second: monster4_65
+    second: skel_b3
   - first:
       213: -6237846411381648970
     second: monster4_66
@@ -405,7 +405,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_6
+      name: zombie_f1
       rect:
         serializedVersion: 2
         x: 754
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_7
+      name: zombie_f2
       rect:
         serializedVersion: 2
         x: 872
@@ -530,7 +530,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_8
+      name: zombief3
       rect:
         serializedVersion: 2
         x: 996
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_9
+      name: skel_f1
       rect:
         serializedVersion: 2
         x: 1114
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_10
+      name: skel_f2
       rect:
         serializedVersion: 2
         x: 1232
@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_11
+      name: skel_f3
       rect:
         serializedVersion: 2
         x: 1356
@@ -614,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_24
+      name: zombie_l1
       rect:
         serializedVersion: 2
         x: 756
@@ -635,7 +635,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_25
+      name: zombie_l2
       rect:
         serializedVersion: 2
         x: 876
@@ -656,7 +656,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_26
+      name: zombie_l3
       rect:
         serializedVersion: 2
         x: 996
@@ -677,7 +677,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_27
+      name: skel_l1
       rect:
         serializedVersion: 2
         x: 1116
@@ -698,7 +698,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_28
+      name: skel_l2
       rect:
         serializedVersion: 2
         x: 1236
@@ -719,7 +719,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_29
+      name: skel_l3
       rect:
         serializedVersion: 2
         x: 1356
@@ -740,7 +740,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_42
+      name: zombie_r1
       rect:
         serializedVersion: 2
         x: 756
@@ -761,7 +761,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_43
+      name: zombie_r2
       rect:
         serializedVersion: 2
         x: 876
@@ -782,7 +782,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_44
+      name: zombie_r3
       rect:
         serializedVersion: 2
         x: 994
@@ -803,7 +803,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_45
+      name: skel_r1
       rect:
         serializedVersion: 2
         x: 1116
@@ -824,7 +824,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_46
+      name: skel_r2
       rect:
         serializedVersion: 2
         x: 1236
@@ -845,7 +845,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_47
+      name: skel_r3
       rect:
         serializedVersion: 2
         x: 1356
@@ -866,7 +866,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_60
+      name: zombie_b1
       rect:
         serializedVersion: 2
         x: 754
@@ -887,7 +887,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_61
+      name: zombie_b2
       rect:
         serializedVersion: 2
         x: 872
@@ -908,7 +908,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_62
+      name: zombie_b3
       rect:
         serializedVersion: 2
         x: 994
@@ -929,7 +929,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_63
+      name: skel_b1
       rect:
         serializedVersion: 2
         x: 1114
@@ -950,7 +950,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_64
+      name: skel_b2
       rect:
         serializedVersion: 2
         x: 1232
@@ -971,7 +971,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster4_65
+      name: skel_b3
       rect:
         serializedVersion: 2
         x: 1354
@@ -2046,7 +2046,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 768
+        y: 767
         width: 41
         height: 66
       alignment: 0
