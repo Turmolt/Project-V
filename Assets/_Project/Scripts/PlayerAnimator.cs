@@ -64,7 +64,6 @@ namespace BackwardsCap
             else if (forward && LastStatePressed == AnimatorState.Forward) SetBools(AnimatorState.Forward);
             else if (back && LastStatePressed == AnimatorState.Back) SetBools(AnimatorState.Back);
             else SetBools(AnimatorState.Idle);
-
         }
 
         void UpdateLastState(Vector2 movement)

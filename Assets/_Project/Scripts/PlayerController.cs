@@ -9,11 +9,18 @@ namespace BackwardsCap
         public Rigidbody2D PlayerRB;
         public PlayerAnimator PlayerAnimator;
         private float speed = 10f;
+        private Camera mainCam;
 
         [HideInInspector] public bool HasControl = true;
 
+        public Inventory Inventory;
+
         private Vector2 movement;
 
+        public void Start()
+        {
+            mainCam = Camera.main;
+        }
 
         void Update()
         {
@@ -23,10 +30,29 @@ namespace BackwardsCap
                 return;
             }
 
+            MouseHandler();
+
             Movement();
         }
 
+        void MouseHandler()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                Ray r = mainCam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero);
 
+                if (hit.transform != null)
+                {
+                    if (hit.transform.CompareTag("Item"))
+                    {
+                        var item = hit.transform.GetComponent<Item>();
+                        Inventory.PickupItem(item);
+                    }
+                }
+            }
+        }
 
         private void Movement()
         {
