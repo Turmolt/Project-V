@@ -38,6 +38,30 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 3973955889
+    locked: 0
+  - name: Walls
+    uniqueID: 653540859
+    locked: 0
+  - name: Pits
+    uniqueID: 981659701
+    locked: 0
+  - name: Doors
+    uniqueID: 753200269
+    locked: 0
+  - name: Furniture
+    uniqueID: 2570516623
+    locked: 0
+  - name: Stairs
+    uniqueID: 3287067633
+    locked: 0
+  - name: Arches
+    uniqueID: 227165877
+    locked: 0
+  - name: Splatter
+    uniqueID: 2911008555
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
