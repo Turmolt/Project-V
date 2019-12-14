@@ -11,20 +11,23 @@ public enum ItemType{
 	*/
 
 	//Weapons
-	Sword,
-	Bow,
-	Staff,
-	Mace,
-	TwoHandedSword,
+	Sword = 0,
+	Dagger = 1,
+	Axe = 2,
+	Mace = 5,
+	Spear = 6,
+	Bow = 3,
+	Staff = 4,
+	Wand = 14,
 	//Armor
-	Heavy,
-	Light,
-	Robe,
-	Shield,
+	HeavyArmor = 7,
+	LeatherArmor = 8,
+	Robe = 9,
+	Shield = 10,
 	//Accessories
-	Ring,
-	Necklace,
-	Boots
+	Ring = 11,
+	Necklace = 12,
+	Boots = 13
 
 }
 //If we use item subtypes:
@@ -53,12 +56,17 @@ public enum AccessoryType{
 */
 
 public enum ItemMaterial{
-	Wood,
-	Iron,
-	Bronze,
-	Silver,
-	Gold,
-	Leather,
-	Bone,
-	Cloth,
+	
+	Light = 0,
+	Tough = 1,
+	Iron = 2,
+	Bronze = 3,
+	Dark = 4,
+	Gold = 5,
+	Wood = 6,
+	Bone = 7,
+	
+	
+	
+	
 }
