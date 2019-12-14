@@ -12,7 +12,7 @@ public class Manager: MonoBehaviour
     public  float minQuality = 1;
     public  float maxQaulity = 80;
     public  float chanceToSpawn = 0.2f;
-    public  float populationWeight = 0.1f;
+    //public  float populationWeight = 0.1f;
 
 
     private void Awake(){
