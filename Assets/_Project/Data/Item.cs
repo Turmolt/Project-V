@@ -5,7 +5,9 @@ public class Item: MonoBehaviour   {
     
     private Sprite _image;
 
-    public Canvas QualityBar;
+    public Canvas QualityBarPrefab;
+
+    private QualityBar qualityBar;
     
     public Sprite Image{
         set{
@@ -22,28 +24,30 @@ public class Item: MonoBehaviour   {
     public ItemMaterial Material;
 
     public int Rarity;
-    [Range(0,100)]
-    private float _quality;
-    public float Quality{
-        get{
-            return _quality;
-        }
-        set{
-            _quality = value;
-            QualityBar.GetComponent<QualityBar>().Quality = _quality;
-        }
 
+    [Range(0,100)][HideInInspector] public float Quality;
+
+    public void SetQuality(float quality)
+    {
+        Quality = quality;
+        if (qualityBar != null) qualityBar.Quality = Quality;
     }
 
-    private void Awake() {
-        Instantiate(QualityBar,this.transform);
+    public float GetQuality()
+    {
+        Debug.Log($"{Type.ToString()}  {Material.ToString()}");
+        return Quality;
+    }
+    
+    private void Start()
+    {
+        if(qualityBar ==null) qualityBar = Instantiate(QualityBarPrefab,this.transform).GetComponent<QualityBar>();
+        qualityBar.Quality = Quality;
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
         if(rend.sprite == null) rend.sprite = Image;
         else Image = rend.sprite;
     }
-    
-    
-    
+
     public Item(ItemType type, ItemMaterial material, float quality, Sprite image = null){
         Type = type;
         Material = material;

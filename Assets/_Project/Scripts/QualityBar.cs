@@ -15,7 +15,7 @@ public class QualityBar : MonoBehaviour
             _quality = value;
             barImage.fillAmount = Quality/100;
         }
-        }
+    }
 
     // Start is called before the first frame update
     void Start()

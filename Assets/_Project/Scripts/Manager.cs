@@ -68,7 +68,7 @@ public class Manager: MonoBehaviour
             
             currentWeight += i.Rarity;
             if (randomWeight <= currentWeight) {
-                i.Quality = UnityEngine.Random.Range(minQuality,maxQaulity);
+                i.SetQuality(UnityEngine.Random.Range(minQuality,maxQaulity));
                 //print(g.name);
                 return g; // selected one
             }

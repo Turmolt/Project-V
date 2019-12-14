@@ -18,9 +18,12 @@ namespace BackwardsCap
 
         private Sprite blankSlotSprite;
 
+        public QualityBar qualityBar;
+
         public void Start()
         {
-            blankSlotSprite = Display.sprite; 
+            blankSlotSprite = Display.sprite;
+            qualityBar.gameObject.SetActive(false);
         }
 
         public void Initialize(int id, Inventory parent)
@@ -35,6 +38,8 @@ namespace BackwardsCap
             
             Display.sprite = item.Image;
             Holding = item;
+            qualityBar.barImage.fillAmount = item.Quality/100f;
+            qualityBar.gameObject.SetActive(true);
             return true;
         }
 
@@ -42,6 +47,7 @@ namespace BackwardsCap
         {
             var item = Holding;
             Holding = null;
+            qualityBar.gameObject.SetActive(false);
             Display.sprite = blankSlotSprite;
             return item;
         }

@@ -35,7 +35,7 @@ namespace BackwardsCap
                 return;
             }
 
-            MouseHandler();
+            //MouseHandler();
 
             if (Input.GetKeyDown(KeyCode.E))
             {

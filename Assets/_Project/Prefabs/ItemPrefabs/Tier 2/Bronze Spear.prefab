@@ -94,11 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456da0953d6ca64c8b4d019601b8bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QualityBar: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
+  QualityBarPrefab: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
     type: 3}
   Type: 6
   Material: 3
   Rarity: 4
+  Quality: 6.901281
 --- !u!61 &-4236369910363829147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

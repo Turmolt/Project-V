@@ -16,10 +16,4 @@ public class SpawnItems : MonoBehaviour
         manager.PopulateItems(this.gameObject,floormap);
         //Array.Sort(manager.ItemList);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
