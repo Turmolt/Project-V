@@ -14,8 +14,6 @@ namespace BackwardsCap
 
         private Inventory inventory;
 
-        private int inventoryId;
-
         private Sprite blankSlotSprite;
 
         public QualityBar qualityBar;
@@ -26,9 +24,8 @@ namespace BackwardsCap
             qualityBar.gameObject.SetActive(false);
         }
 
-        public void Initialize(int id, Inventory parent)
+        public void Initialize(Inventory parent)
         {
-            inventoryId = id;
             inventory = parent;
         }
 
@@ -56,7 +53,7 @@ namespace BackwardsCap
         {
             if (Holding != null)
             {
-                Debug.Log($"[InventorySlot {inventoryId}]: Item Drag Start");
+//                Debug.Log($"[InventorySlot {inventoryId}]: Item Drag Start");
                 inventory.ItemRemoved(PopItem(), this);
             }
         }

@@ -12,15 +12,17 @@ namespace BackwardsCap
 
         [HideInInspector] public Item Dragging;
 
+        private SpriteRenderer draggingRenderer;
+
         private Camera mainCam;
+
+        public PlayerController Player;
 
         public Tilemap FloorTilemap;
 
         private Inventory inventory;
 
         private InventorySlot itemWasIn;
-
-
 
         void Start()
         {
@@ -34,55 +36,68 @@ namespace BackwardsCap
             {
                 Debug.LogError("[ItemDragManager]: Trying to drag 2 items?");
             }
+            
             DraggingItem = true;
             itemWasIn = from;
             Dragging = item;
+            draggingRenderer = item.gameObject.GetComponent<SpriteRenderer>();
             Dragging.gameObject.SetActive(true);
         }
 
         void Update()
         {
-            if (DraggingItem && Input.GetMouseButton(0))
+            if (DraggingItem)
             {
-                FollowMouse();
-            }
+                if (Input.GetMouseButton(0))
+                {
+                    FollowMouse();
+                }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (DraggingItem)
+                if (Input.GetMouseButtonUp(0))
                 {
                     DropItem();
                 }
             }
         }
 
+        bool CheckIfValidPlacement()
+        {
+            var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Floor"));
+            if (hit.transform != null)
+            {
+                if(Vector3.Distance(Player.transform.position.xy(),new Vector3(hit.point.x,hit.point.y,0))<2f)
+                    return true;
+            }
+            return false;
+        }
+
         void DropItem()
         {
             DraggingItem = false;
+            draggingRenderer.color = Color.white;
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            var inventoryRect = inventory.GetComponent<RectTransform>();
-            if (inventory.HoveringOverInventory)
+            if (inventory.HoveringOverInventory || !CheckIfValidPlacement())
             {
                 Debug.Log("[ItemDragManager]: Failed to place item!");
                 if(itemWasIn.PickUp(Dragging))
                     Dragging.gameObject.SetActive(false);
-                Dragging = null;
-                itemWasIn = null;
             }
             else
             {
-                Debug.Log($"[ItemDragManager]: Dropped Item at {wp}");
+//                Debug.Log($"[ItemDragManager]: Dropped Item at {wp}");
                 Dragging.transform.position = wp.xy();
                 inventory.UpdateInventoryOrder();
-                Dragging = null;
-                itemWasIn = null;
             }
-
+            Dragging = null;
+            draggingRenderer = null;
+            itemWasIn = null;
         }
 
         void FollowMouse()
         {
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            draggingRenderer.color = CheckIfValidPlacement() ? Color.green : Color.red;
             Dragging.transform.position = wp.xy();
         }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812259837029020090}
   - component: {fileID: 5472092155449027140}
+  - component: {fileID: 3238864185571150940}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -44,13 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemList:
-  - {fileID: 1894109333877494835, guid: 7d4c421521616014685c828dc4abfaed, type: 3}
-  - {fileID: 1894109333877494835, guid: dc632985d71fafa48b0d81d00f76426f, type: 3}
-  - {fileID: 1894109333877494835, guid: bf4a577ad50cca745b3ab7926dec2327, type: 3}
-  - {fileID: 1894109333877494835, guid: 7356a9c7b97d2c547947ddf7294fc5a4, type: 3}
-  - {fileID: 1894109333877494835, guid: 1c4d8bf2b45e8a04c93b34d5ac807457, type: 3}
-  - {fileID: 1894109333877494835, guid: 5dad6e52f44484144ace8ed32911df4e, type: 3}
-  MaterialList:
   - {fileID: 1894109333877494835, guid: 36ee8395576d6874aad91dadf7572e94, type: 3}
   - {fileID: 1894109333877494835, guid: ef727ebef1333b84f8c88948d8f0c22d, type: 3}
   - {fileID: 1894109333877494835, guid: c931c2c68f227294bb224e7b9bb665d2, type: 3}
@@ -99,9 +93,29 @@ MonoBehaviour:
   - {fileID: 1894109333877494835, guid: 3b078b02bef6d6a408dffd6d2fc5dd6e, type: 3}
   - {fileID: 1894109333877494835, guid: 600daf313887c2741af84ebdeac08fbe, type: 3}
   - {fileID: 1894109333877494835, guid: 099cff4719ecf7848bbd82493fb22e60, type: 3}
+  MaterialList:
+  - {fileID: 1894109333877494835, guid: 7d4c421521616014685c828dc4abfaed, type: 3}
+  - {fileID: 1894109333877494835, guid: dc632985d71fafa48b0d81d00f76426f, type: 3}
+  - {fileID: 1894109333877494835, guid: bf4a577ad50cca745b3ab7926dec2327, type: 3}
+  - {fileID: 1894109333877494835, guid: 7356a9c7b97d2c547947ddf7294fc5a4, type: 3}
+  - {fileID: 1894109333877494835, guid: 1c4d8bf2b45e8a04c93b34d5ac807457, type: 3}
+  - {fileID: 1894109333877494835, guid: 5dad6e52f44484144ace8ed32911df4e, type: 3}
   TypeList: []
   NumberOfMaterials: 8
   NumberOfItemTypes: 11
   minQuality: 1
   maxQaulity: 80
-  chanceToSpawn: 0.2
+  chanceToSpawn: 0.03
+--- !u!114 &3238864185571150940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314289184045857972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf523ad8bd0e4144db13babd186147be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floormap: {fileID: 0}

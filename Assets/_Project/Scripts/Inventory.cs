@@ -9,11 +9,7 @@ namespace BackwardsCap
     {
         public InventorySlot[] Slots;
 
-        public Transform InventoryPool;
-
         public ItemDragManager DragManager;
-
-        public Tilemap ItemTilemap;
 
         [HideInInspector] public bool HoveringOverInventory = false;
 
@@ -21,7 +17,7 @@ namespace BackwardsCap
         {
             for (int i = 0; i < Slots.Length; i++)
             {
-                Slots[i].Initialize(i,this);
+                Slots[i].Initialize(this);
             }
         }
 
@@ -58,7 +54,6 @@ namespace BackwardsCap
 
         public void ItemRemoved(Item item, InventorySlot slot)
         {
-            item.transform.parent = ItemTilemap.transform;
             DragManager.StartDragging(item, slot);
         }
 

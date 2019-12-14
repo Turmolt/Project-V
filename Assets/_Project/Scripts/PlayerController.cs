@@ -18,8 +18,6 @@ namespace BackwardsCap
 
         private Vector2 movement;
 
-        public GameObject Dbg;
-
         private float maxPickupDistance = 2f;
 
         public void Start()
