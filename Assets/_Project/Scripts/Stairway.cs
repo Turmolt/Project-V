@@ -16,6 +16,11 @@ namespace BackwardsCap
         public AudioSource MusicSource;
 
         public AudioClip MusicChoice;
+        private Manager _manager;
+
+        private void Awake() {
+            _manager = GameObject.FindObjectOfType<Manager>();
+        }
 
         void OnTriggerEnter2D(Collider2D col)
         {
@@ -30,6 +35,10 @@ namespace BackwardsCap
         void Travel()
         {
             Player.HasControl = false;
+            if(Destination.name.Contains("Dungeon")){
+                _manager.SpawnNewItems();
+            }
+            
             FadeToBlack.DOFade(1f, 1f).OnComplete(() =>
             {
                 Player.transform.position = Destination.position;
