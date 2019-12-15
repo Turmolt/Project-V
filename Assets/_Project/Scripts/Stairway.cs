@@ -13,12 +13,15 @@ namespace BackwardsCap
 
         public CanvasGroup FadeToBlack;
 
+        public AudioSource MusicSource;
+
         public AudioClip MusicChoice;
 
         void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Player"))
             {
+                StartCoroutine(FadeAudioSource.StartFade(MusicSource, 1f, 0f));
                 Travel();
             }
         }
