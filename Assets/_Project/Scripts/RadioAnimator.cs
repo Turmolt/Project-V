@@ -17,7 +17,7 @@ public class RadioAnimator : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        persistantTimer += Time.deltaTime;
+        //persistantTimer += Time.deltaTime;
         if (timer >= 1f)
         {
             timer -= 1f;
