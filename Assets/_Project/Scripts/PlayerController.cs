@@ -145,9 +145,12 @@ namespace BackwardsCap
                         }
                         else
                         {
-                            Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
+                            if (!Inventory.HoveringOverInventory)
+                            {
+                                Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
 
-                            SoundManager.instance.ClipArrayVariation(CantPickup);
+                                SoundManager.instance.ClipArrayVariation(CantPickup);
+                            }
                         }
                     }
                 }

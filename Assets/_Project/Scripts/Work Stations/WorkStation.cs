@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorkStation : MonoBehaviour
 {
-    public Item InMachine;
+    [HideInInspector]public Item InMachine;
     public Transform ItemSpace;
     private BoxCollider2D loadedBoxCollider2D;
     protected SpriteRenderer loadedSpriteRenderer;

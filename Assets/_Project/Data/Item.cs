@@ -9,7 +9,7 @@ public class Item: MonoBehaviour   {
 
     private QualityBar qualityBar;
 
-    public enum State { Normal, Heated, Hammered, Tempered}
+    public enum State { Normal, Heated, Hammered, Finished}
 
     public State ItemState= State.Normal;
 
