@@ -134,7 +134,7 @@ namespace BackwardsCap
         {
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
             var t = CheckIfOverValidMachine();
-            draggingRenderer.color = (!t.Item1&&CheckIfValidPlacement()) || (t.Item1 && t.Item2!=null)? Color.green : Color.red;
+            draggingRenderer.color = (!t.Item1&&CheckIfValidPlacement()) || (t.Item1 && t.Item2!=null)? Color.green : new Color(0.5f,0.5f,0.5f,0.5f);
             Dragging.transform.position = wp.xy();
         }
 

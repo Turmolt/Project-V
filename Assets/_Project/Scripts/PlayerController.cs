@@ -38,12 +38,7 @@ namespace BackwardsCap
                 return;
             }
 
-            //MouseHandler();
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                PickupItem();
-            }
+            MouseHandler();
 
             Movement();
         }
@@ -110,14 +105,25 @@ namespace BackwardsCap
             return Vector3.zero;
         }
 
-
+        
         void MouseHandler()
         {
             if (Input.GetMouseButtonDown(0))
             {
                 var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
-                Ray r = mainCam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Items"));
+
+                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
+                if (hit.transform != null && hit.transform.CompareTag("WorkStation"))
+                {
+                    var workStation = hit.transform.GetComponent<WorkStation>();
+                    if (workStation.InMachine != null)
+                    {
+                        Inventory.PickupItem(workStation.PopItem());
+                        return;
+                    }
+                }
+
+                hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Items"));
 
                 if (hit.transform != null)
                 {
@@ -127,11 +133,19 @@ namespace BackwardsCap
                         if (distance < maxPickupDistance)
                         {
                             var item = hit.transform.GetComponent<Item>();
-                            Inventory.PickupItem(item);
+                            if (Inventory.PickupItem(item))
+                            {
+                                //TODO: Add audio here for picking up item!
+                            }
+                            else
+                            {
+                                //TODO: And here for if you don't pick it up
+                            }
                         }
                         else
                         {
                             Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
+                            //TODO: Also here if you don't pick it up
                         }
                     }
                 }
