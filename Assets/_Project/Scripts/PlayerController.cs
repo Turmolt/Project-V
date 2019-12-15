@@ -136,11 +136,11 @@ namespace BackwardsCap
                             var item = hit.transform.GetComponent<Item>();
                             if (Inventory.PickupItem(item))
                             {
-                                SoundManager.instance.ClipArrayVariation(ItemPickupAudio);
+                                if(ItemPickupAudio) SoundManager.instance.ClipArrayVariation(ItemPickupAudio);
                             }
                             else
                             {
-                                SoundManager.instance.ClipArrayVariation(CantPickup);
+                                if(CantPickup) SoundManager.instance.ClipArrayVariation(CantPickup);
                             }
                         }
                         else
