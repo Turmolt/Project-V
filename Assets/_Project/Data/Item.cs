@@ -52,7 +52,8 @@ public class Item: MonoBehaviour   {
         } else{
             canvas = qualityBar.GetComponent<Canvas>();
         }
-        Quality = qualityBar.Quality;
+
+        qualityBar.Quality = Quality;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 100;
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
