@@ -9,6 +9,10 @@ public class Manager: MonoBehaviour
     public  GameObject[] ItemList;
     public GameObject[] MaterialList;
     public GameObject[] TypeList;
+    public GameObject AnyItem;
+    public Tilemap FloorMap;
+    public Tilemap[] NonFloorTilemaps;
+    public GameObject ItemParent;   
     private int[] ItemRarity = new int[0];
     private int totalItemWeight;
     public  int NumberOfMaterials = 8;
@@ -29,6 +33,8 @@ public class Manager: MonoBehaviour
             ItemRarity[i] = ItemList[i].GetComponent<Item>().Rarity;
             totalItemWeight += ItemRarity[i];
         }
+
+        PopulateItems(ItemParent, FloorMap);
         /*
         //NOT SURE IF SUPPOSED TO SORT HIGH>LOW or LOW>HIGH
         print("Before");
@@ -46,10 +52,18 @@ public class Manager: MonoBehaviour
 
 
     public  GameObject[] PopulateItems(GameObject parent, Tilemap floorMap){
+        bool ignore = false;
         foreach(Vector3Int pos in floorMap.cellBounds.allPositionsWithin){
+            ignore = false;   
            if(floorMap.GetTile(pos)){
+               
+               foreach (Tilemap map in NonFloorTilemaps){
+                   if ( map.GetTile(pos) ){
+                       ignore = true;
+                   }
+               }
 
-                if(UnityEngine.Random.Range(0.0f,1.0f)<chanceToSpawn){
+                if(UnityEngine.Random.Range(0.0f,1.0f)<chanceToSpawn && !ignore){
                     Instantiate(randomItem(),pos + new Vector3(0.5f,0.5f),Quaternion.identity,parent.transform);
                 }
            }

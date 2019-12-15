@@ -45,8 +45,16 @@ public class Item: MonoBehaviour   {
     
     private void Start()
     {
-        if(qualityBar ==null) qualityBar = Instantiate(QualityBarPrefab,this.transform).GetComponent<QualityBar>();
-        qualityBar.Quality = Quality;
+        Canvas canvas;
+        if(qualityBar == null){
+            canvas = Instantiate(QualityBarPrefab,this.transform);
+            qualityBar = canvas.GetComponent<QualityBar>();
+        } else{
+            canvas = qualityBar.GetComponent<Canvas>();
+        }
+        Quality = qualityBar.Quality;
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = 100;
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
         if(rend.sprite == null) rend.sprite = Image;
         else Image = rend.sprite;

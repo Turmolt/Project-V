@@ -102,7 +102,7 @@ public class NPC: MonoBehaviour   {
     }
     private void randomMaterial(){
         if(TypeWanted == null){
-            MaterialWanted = (ItemMaterial)Random.Range(0,_manager.NumberOfMaterials);
+            MaterialWanted = (ItemMaterial)Random.Range(2,_manager.NumberOfMaterials);
         } else{
             switch (TypeWanted){
                 case ItemType.Axe:
@@ -138,12 +138,12 @@ public class NPC: MonoBehaviour   {
                 //I've adjusted the Robe and Leather Armor to ONLY be requested at Tiers 3 and 4 due to
                 //Difficulty finding "Material" solo sprite for Light and Tough
                 case ItemType.Robe:
-                    int temp = Random.Range(2,4);
+                    int temp = Random.Range(4,6);
                     //if (temp>2) temp +=2; 
                     MaterialWanted = (ItemMaterial)(temp);
                     break;
                 case ItemType.LeatherArmor:
-                    int temp2 = Random.Range(2,4);
+                    int temp2 = Random.Range(4,6);
                     //if (temp2>2) temp2 +=2; 
                     MaterialWanted = (ItemMaterial)(temp2);
                     break;
@@ -171,6 +171,7 @@ public class NPC: MonoBehaviour   {
                     Item temp = item.GetComponent<Item>();
                     if(temp.Material == MaterialWanted && temp.Type == TypeWanted){
                         requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                        
                         //Item temp2 = obj.GetComponent<Item>();
                         // if(MinimumQuality != null){
                         //     temp2.Quality = (float)MinimumQuality;
@@ -180,11 +181,18 @@ public class NPC: MonoBehaviour   {
                         // }
                         
                         
-                        break;
+                        //break;
                     }
                 }
             } else if(wants[0] == 1){
                 //Type Only
+                foreach (GameObject item in _manager.TypeList){
+                    Item temp = item.GetComponent<Item>();
+                    if(temp.Type == TypeWanted){
+                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                    }
+
+                }
 
             } else if(wants[1] == 1){
                 //Mats Only
@@ -195,22 +203,26 @@ public class NPC: MonoBehaviour   {
                     }
 
                 }
-
+            } else if(wants[0] == 0 && wants[1]==0){ 
+                    requestObject = Instantiate(_manager.AnyItem, bubble.position, Quaternion.identity, bubble.transform);
             }
             if(wants[2] == 1){
                 if(requestObject){
                     Item temp = requestObject.GetComponent<Item>();
-                    temp.Quality = (float)MinimumQuality;
+                    temp.SetQuality((float)MinimumQuality);
+                    //temp.Quality = (float)MinimumQuality;
+                } else{
+
                 }
                 
             } else{
                 if(requestObject){
-                    Canvas qualityCan = requestObject.GetComponentInChildren<Canvas>();
-                    qualityCan.enabled = false;
+                    //QualityBar qualityBar = requestObject.GetComponentInChildren<QualityBar>();
+                    //qualityBar.gameObject.SetActive(false);
                 }
             }
             if(requestObject){
-                requestObject.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+                requestObject.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
             }
             
         }
