@@ -30,7 +30,7 @@ public void PlaySomething(AudioClip clip)
         musicSource.volume = 0;
         musicSource.clip = clip;
         musicSource.Play();
-        StartCoroutine(FadeAudioSource.StartFade(musicSource, 5f, .5f));
+        StartCoroutine(FadeAudioSource.StartFade(musicSource, 1f, .5f));
 
     }
 
