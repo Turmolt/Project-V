@@ -18,6 +18,10 @@ public class Forge : WorkStation
     private float damaged = 10f;
     private float barBuffer = 1f;
 
+    public AudioClip ForgeSound;
+
+    public SoundManager SoundManager;
+
     void Start()
     {
         GoodMeter.fillAmount = 1.0f - (target / (damaged + barBuffer));
@@ -35,6 +39,7 @@ public class Forge : WorkStation
         duration = -.5f; //slight delay
         Display.fillAmount = 0f;
         base.LoadItem(item);
+        SoundManager.ClipArrayVariation(ForgeSound);
         DisplayCG.DOFade(1f, 0.25f);
     }
 

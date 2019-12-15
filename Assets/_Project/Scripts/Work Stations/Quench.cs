@@ -9,10 +9,14 @@ namespace BackwardsCap
         public Inventory Inventory;
         public ParticleSystem ParticleSystem;
 
+        public AudioClip QuenchSound;
+        public SoundManager SoundManager;
+
         public override void LoadItem(Item item)
         {
             if (item.ItemState == Item.State.Heated || item.ItemState == Item.State.Hammered)
             {
+                SoundManager.ClipArrayVariation(QuenchSound);
                 ParticleSystem.Play();
                 item.SetFinished();
             }

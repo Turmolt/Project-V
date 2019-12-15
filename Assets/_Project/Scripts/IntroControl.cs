@@ -27,6 +27,10 @@ namespace BackwardsCap
 
         public GameObject logo;
 
+        public CanvasGroup UICG;
+
+        public GameObject NPCObject;
+
 
         private IEnumerator WaitForIntro()
         {
@@ -46,6 +50,8 @@ namespace BackwardsCap
 
         private void Awake()
         {
+            UICG.alpha = 0f;
+            NPCObject.SetActive(false);
             StartCoroutine(WaitForIntro());
         }
 
@@ -64,11 +70,14 @@ namespace BackwardsCap
 
             IntroCamera.enabled = false;
             GameCamera.enabled = true;
+            UICG.alpha = 1f;
+            NPCObject.SetActive(true);
             SoundManager.instance.PlaySomething(MusicChoice);
             FadeToBlack.DOFade(0f, 1f).OnComplete(() =>
             {
                 PlayerRenderer.enabled = true;
                 Player.HasControl = true;
+
 
             });
 

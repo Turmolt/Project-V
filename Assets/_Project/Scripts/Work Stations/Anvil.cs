@@ -19,6 +19,9 @@ namespace BackwardsCap
         private float midQualityPlus = .5f;
         private float cursor = 0f;
 
+        public AudioClip AnvilSound;
+        public SoundManager SoundManager;
+
         void Start()
         {
             ScoreDisplay.SetRange(highScore,midScore);
@@ -50,6 +53,7 @@ namespace BackwardsCap
             if (InMachine.SwingsLeft > 0)
             {
                 InMachine.SwingsLeft--;
+                SoundManager.ClipArrayVariation(AnvilSound);
                 var c = Mathf.Abs(cursor - .5f);
                 if (c <= highScore)
                 {
