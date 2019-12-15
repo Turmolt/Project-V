@@ -36,12 +36,14 @@ public class NPC: MonoBehaviour   {
 
     private Transform CheckMark;
 
-    private bool generating = false;
+    private bool waiting = false;
+
 
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
         Patience = Random.Range(60,MaxPatience);
         PatienceImage.fillAmount = Patience/MaxPatience;
+        waiting = true;
         StartCoroutine(ReducePatience());
         createNeed();
     }
@@ -55,23 +57,26 @@ public class NPC: MonoBehaviour   {
 //            print(Patience);
 //            print(Patience/MaxPatience);
             PatienceImage.fillAmount = Patience/MaxPatience;
-            if(Patience<=0){
+            if(Patience<=0&&waiting)
+            {
+                waiting = false;
                 NPCLeave();
-                break;
             }
+
+            yield return 0;
         }
     }
 
-    private void NPCLeave(){
-        //TODO: Make NPC Leave if Patience runs out OR if item is fulfilled
+    private void NPCLeave()
+    {
+        Satisfied = true;
+        GenerateNewRequest();
     }
 
     private void Start() {
         RequestCanvas = Instantiate(RequestCanvas, this.transform);
         requestCG = RequestCanvas.GetComponent<CanvasGroup>();
         CheckMark = RequestCanvas.transform.Find("Check Mark");
-        Debug.Log(CheckMark.name);
-        //RequestCanvas = GetComponentInChildren<Canvas>();
         RequestCanvas.enabled = false;
         requestObject = displayRequest();
         requestObject.tag = "Seeking";
@@ -81,6 +86,7 @@ public class NPC: MonoBehaviour   {
         {
             print("NoQual");
         }
+        Satisfied = false;
         CheckMark.SetAsLastSibling();
         //displayRequest();
     }
@@ -146,7 +152,7 @@ public class NPC: MonoBehaviour   {
             }
 
         Satisfied = true;
-
+        waiting = false;
         return score;
     }
 
@@ -173,16 +179,18 @@ public class NPC: MonoBehaviour   {
     IEnumerator WaitAndFadeInRequest(float time)
     {
         yield return new WaitForSeconds(time);
+        Satisfied = false;
         Patience = Random.Range(60, MaxPatience);
         PatienceImage.fillAmount = Patience / MaxPatience;
         RequestCanvas.gameObject.SetActive(true);
+        waiting = true;
         requestCG.DOFade(1.0f,.25f);
     }
 
     private void createNeed()
     {
         if (requestObject != null) Destroy(requestObject);
-        Satisfied = false;
+        
         TypeWanted = null;
         MaterialWanted = null;
         MinimumQuality = null;

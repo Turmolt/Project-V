@@ -28,11 +28,9 @@ namespace BackwardsCap
         public GameObject logo;
 
 
-
-       
-
         private IEnumerator WaitForIntro()
         {
+            Player.HasControl = false;
             PlayerRenderer.enabled = false;
             yield return new WaitForSeconds(IntroClip.length);
             Travel1();
@@ -53,7 +51,6 @@ namespace BackwardsCap
 
         void Travel1()
         {
-            Player.HasControl = false;
             FadeToBlack.DOFade(1f, 1f).OnComplete(() =>
             {
                 Player.transform.position = Destination.position;
