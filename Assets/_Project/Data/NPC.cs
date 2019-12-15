@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+
 
 
 public class NPC: MonoBehaviour   {
@@ -18,6 +20,10 @@ public class NPC: MonoBehaviour   {
     public ItemMaterial? MaterialWanted = null;
     public float? MinimumQuality = null;
     public float MinimumTier;
+
+    public float Patience = 0.0f;
+    public float MaxPatience = 180.0f;
+    public Image PatienceImage;
     private int[] wants = new int[3];
     private Manager _manager;
 
@@ -29,8 +35,32 @@ public class NPC: MonoBehaviour   {
     
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
+        Patience = Random.Range(60,MaxPatience);
+        PatienceImage.fillAmount = Patience/MaxPatience;
+        StartCoroutine(ReducePatience());
         createNeed();
     }
+
+    private IEnumerator ReducePatience()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            Patience-=1;
+            print(Patience);
+            print(Patience/MaxPatience);
+            PatienceImage.fillAmount = Patience/MaxPatience;
+            if(Patience<=0){
+                NPCLeave();
+                break;
+            }
+        }
+    }
+
+    private void NPCLeave(){
+        //TODO: Make NPC Leave if Patience runs out OR if item is fulfilled
+    }
+
     private void Start() {
         RequestCanvas = Instantiate(RequestCanvas, this.transform);
         CheckMark = RequestCanvas.transform.Find("Check Mark");
