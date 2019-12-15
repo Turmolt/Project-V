@@ -32,11 +32,20 @@ public class Item: MonoBehaviour   {
     public ItemType Type;
     public ItemMaterial Material;
 
+    public QualityBar QualityBar => qualityBar;
+
     public int Rarity;
 
     [HideInInspector] public float Quality;
 
     private Image finishedCheck;
+
+    public bool IsMaterialOrAny()
+    {
+        return Type == ItemType.nil && Material != ItemMaterial.Nil ||
+               Type != ItemType.nil && Material == ItemMaterial.Nil||
+               Type == ItemType.nil && Material == ItemMaterial.Nil;
+    }
 
     public void SetFinished()
     {

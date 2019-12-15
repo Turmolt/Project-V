@@ -26,16 +26,7 @@ public class QualityBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //barImage = transform.Find("Bar").GetComponent<Image>();
-        //barImage.fillAmount = Quality/100;
-        if (gameObject.transform.parent.parent.name == "SpeechBubble")
-        {
-            FinishedMark.enabled = true;
-        }
-        else
-        {
-            FinishedMark.enabled = false;
-        }
+        FinishedMark.enabled = false;
     }
 
 

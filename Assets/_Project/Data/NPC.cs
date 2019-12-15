@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 public class NPC: MonoBehaviour   {
@@ -23,6 +24,8 @@ public class NPC: MonoBehaviour   {
     public bool Satisfied = false;
     
     public float ScoreMultiplier;
+
+    private Transform CheckMark;
     
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
@@ -30,16 +33,19 @@ public class NPC: MonoBehaviour   {
     }
     private void Start() {
         RequestCanvas = Instantiate(RequestCanvas, this.transform);
+        CheckMark = RequestCanvas.transform.Find("Check Mark");
+        Debug.Log(CheckMark.name);
         //RequestCanvas = GetComponentInChildren<Canvas>();
         RequestCanvas.enabled = false;
         requestObject = displayRequest();
         requestObject.tag = "Seeking";
         requestObject.layer = LayerMask.NameToLayer("Seeking");
-        if (requestObject.GetComponentInChildren<Item>().Quality == 0)
+        var item = requestObject.GetComponentInChildren<Item>();
+        if (item.Quality == 0)
         {
             print("NoQual");
         }
-        
+        CheckMark.SetAsLastSibling();
         //displayRequest();
     }
 
