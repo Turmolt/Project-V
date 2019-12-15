@@ -35,7 +35,9 @@ public class NPC: MonoBehaviour   {
     public float ScoreMultiplier;
 
     private Transform CheckMark;
-    
+
+    private bool generating = false;
+
     private void Awake() {
         _manager = FindObjectOfType<Manager>();
         Patience = Random.Range(60,MaxPatience);
@@ -171,6 +173,8 @@ public class NPC: MonoBehaviour   {
     IEnumerator WaitAndFadeInRequest(float time)
     {
         yield return new WaitForSeconds(time);
+        Patience = Random.Range(60, MaxPatience);
+        PatienceImage.fillAmount = Patience / MaxPatience;
         RequestCanvas.gameObject.SetActive(true);
         requestCG.DOFade(1.0f,.25f);
     }
