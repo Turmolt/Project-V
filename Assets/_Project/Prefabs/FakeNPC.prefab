@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 3179971191167430259}
   - component: {fileID: 5858569706157390451}
   - component: {fileID: 2106392055}
-  - component: {fileID: 1878094474178771620}
+  - component: {fileID: 1036557261763271648}
   m_Layer: 0
-  m_Name: FakeNPC
+  m_Name: FakeNPC_LOCAL_23484
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,19 +278,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< .merge_file_a13536
---- !u!1 &7266879993318938355
-GameObject:
-=======
---- !u!95 &1878094474178771620
+--- !u!95 &1036557261763271648
 Animator:
   serializedVersion: 3
->>>>>>> .merge_file_a17900
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< .merge_file_a13536
+  m_GameObject: {fileID: 5012890978637610048}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed9734d2a697d1448aae81b5e24022c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &7266879993318938355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990901566303211983}
@@ -358,17 +370,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-=======
-  m_GameObject: {fileID: 5012890978637610048}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed9734d2a697d1448aae81b5e24022c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> .merge_file_a17900
