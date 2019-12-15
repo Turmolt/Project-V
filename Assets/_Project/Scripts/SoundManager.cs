@@ -8,8 +8,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public static SoundManager instance = null;
 
-    public float highPitchRange = 1.05f;
-    public float lowPitchRange = 0.95f;
+    public float highPitchRange = 1.15f;
+    public float lowPitchRange = 0.85f;
 
 
     private void Awake()
@@ -27,9 +27,10 @@ public class SoundManager : MonoBehaviour
 
 public void PlaySomething(AudioClip clip)
     {
-        fxSource.clip = clip;
-
-        fxSource.Play();
+        musicSource.volume = 0;
+        musicSource.clip = clip;
+        musicSource.Play();
+        StartCoroutine(FadeAudioSource.StartFade(musicSource, 5f, .5f));
 
     }
 
