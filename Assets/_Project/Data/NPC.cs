@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine.UI;
 
 
@@ -13,6 +14,8 @@ public class NPC: MonoBehaviour   {
     public Sprite Image;
 
     public Canvas RequestCanvas;
+
+    private CanvasGroup requestCG;
 
     private GameObject requestObject;
     
@@ -63,6 +66,7 @@ public class NPC: MonoBehaviour   {
 
     private void Start() {
         RequestCanvas = Instantiate(RequestCanvas, this.transform);
+        requestCG = RequestCanvas.GetComponent<CanvasGroup>();
         CheckMark = RequestCanvas.transform.Find("Check Mark");
         Debug.Log(CheckMark.name);
         //RequestCanvas = GetComponentInChildren<Canvas>();
@@ -144,8 +148,36 @@ public class NPC: MonoBehaviour   {
         return score;
     }
 
+    public void GenerateNewRequest()
+    {
+        requestCG.DOFade(0f, .25f).OnComplete(() =>
+        {
+            RequestCanvas.gameObject.SetActive(false);
+
+            createNeed();
+            requestObject = displayRequest();
+            requestObject.tag = "Seeking";
+            requestObject.layer = LayerMask.NameToLayer("Seeking");
+            var item = requestObject.GetComponentInChildren<Item>();
+            if (item.Quality == 0)
+            {
+                print("NoQual");
+            }
+            CheckMark.SetAsLastSibling();
+            StartCoroutine(WaitAndFadeInRequest(5.0f));
+        });
+    }
+
+    IEnumerator WaitAndFadeInRequest(float time)
+    {
+        yield return new WaitForSeconds(time);
+        RequestCanvas.gameObject.SetActive(true);
+        requestCG.DOFade(1.0f,.25f);
+    }
+
     private void createNeed()
     {
+        if (requestObject != null) Destroy(requestObject);
         Satisfied = false;
         TypeWanted = null;
         MaterialWanted = null;

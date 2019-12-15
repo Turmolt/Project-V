@@ -91,16 +91,16 @@ namespace BackwardsCap
                 {
                     if (hit.transform.CompareTag("Seeking"))
                     {
-                        return hit.transform.GetComponentInParent<NPC>();
+                        var npc = hit.transform.GetComponentInParent<NPC>();
+                        return npc.Satisfied ? null : npc;
                     }
                     else
                     {
-                        return hit.transform.GetComponent<NPC>();
+                        var npc = hit.transform.GetComponent<NPC>();
+                        return npc.Satisfied?null:npc;
                     }
                 }
             }
-
-
             return null;
         }
         
@@ -131,6 +131,7 @@ namespace BackwardsCap
                 var score = npc.ScoreItem(Dragging);
                 ScoreManager.instance.AddPoints(score);
                 Destroy(Dragging.gameObject);
+                npc.GenerateNewRequest();
                 inventory.UpdateInventoryOrder();
             }
             else if (workStation.Item1)
