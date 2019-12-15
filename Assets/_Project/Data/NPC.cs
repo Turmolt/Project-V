@@ -47,8 +47,8 @@ public class NPC: MonoBehaviour   {
         {
             yield return new WaitForSeconds(1);
             Patience-=1;
-            print(Patience);
-            print(Patience/MaxPatience);
+//            print(Patience);
+//            print(Patience/MaxPatience);
             PatienceImage.fillAmount = Patience/MaxPatience;
             if(Patience<=0){
                 NPCLeave();
