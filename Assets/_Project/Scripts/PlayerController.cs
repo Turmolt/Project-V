@@ -26,10 +26,7 @@ namespace BackwardsCap
         public AudioClip ItemPickupAudio;
         public AudioClip CantPickup;
 
-        public void Start()
-        {
-            mainCam = Camera.main;
-        }
+        public Camera MainCam;
 
         void Update()
         {
@@ -48,7 +45,7 @@ namespace BackwardsCap
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                var wp = MainCam.ScreenToWorldPoint(Input.mousePosition);
 
                 RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
                 if (hit.transform != null)
@@ -95,7 +92,7 @@ namespace BackwardsCap
 
             if (Input.GetMouseButtonDown(1))
             {
-                var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                var wp = MainCam.ScreenToWorldPoint(Input.mousePosition);
 
                 RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
                 if (hit.transform != null && hit.transform.CompareTag("Anvil"))

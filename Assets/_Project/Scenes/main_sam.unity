@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10478,7 +10478,7 @@ GameObject:
   - component: {fileID: 584693068}
   - component: {fileID: 584693070}
   - component: {fileID: 584693069}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14084,6 +14084,7 @@ MonoBehaviour:
   Dragging: {fileID: 0}
   Player: {fileID: 9055060209264530698}
   FloorTilemap: {fileID: 1430762673}
+  Cam: {fileID: 9055060208332792867}
 --- !u!114 &961556789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14223,7 +14224,7 @@ GameObject:
   - component: {fileID: 973310806}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105919,6 +105920,7 @@ MonoBehaviour:
   SoundEffectAS: {fileID: 1314737940}
   ItemPickupAudio: {fileID: 8300000, guid: a555b276ae4e89544a179cce297ef4e3, type: 3}
   CantPickup: {fileID: 8300000, guid: 591cb7b8874f1864eafa5dbf82f87902, type: 3}
+  MainCam: {fileID: 9055060208332792867}
 --- !u!4 &9055060209264530700
 Transform:
   m_ObjectHideFlags: 0

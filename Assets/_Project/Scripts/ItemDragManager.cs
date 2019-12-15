@@ -26,10 +26,12 @@ namespace BackwardsCap
 
         private Color priorColor;
 
+        public Camera Cam;
+
         void Start()
         {
             inventory = GetComponent<Inventory>();
-            mainCam = Camera.main;
+            mainCam = Cam;
         }
 
         public void StartDragging(Item item, InventorySlot from)
