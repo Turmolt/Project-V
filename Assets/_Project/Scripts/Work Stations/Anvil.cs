@@ -14,9 +14,9 @@ namespace BackwardsCap
         private float speed = 1.5f;
 
         private float highScore = .05f;
-        private float highQualityPlus = 2f;
+        private float highQualityPlus = 1f;
         private float midScore = .15f;
-        private float midQualityPlus = 1f;
+        private float midQualityPlus = .5f;
         private float cursor = 0f;
 
         void Start()
