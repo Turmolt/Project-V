@@ -9,6 +9,26 @@ namespace BackwardsCap
     {
         public Image Display;
         public Item Seeking;
-        
+
+        public QualityBar qualityBar;
+
+        private Sprite blankSlotSprite;
+
+        public void Start()
+        {
+            blankSlotSprite = Display.sprite;
+            qualityBar.gameObject.SetActive(false);
+        }
+
+        public void LoadItem(Item item)
+        {
+            Seeking = item;
+            Display.sprite = item.GetComponent<SpriteRenderer>().sprite;
+            qualityBar.Quality = item.Quality;
+            qualityBar.FinishedMark.enabled = true;
+            qualityBar.gameObject.SetActive(true);
+
+        }
+
     } 
 }
