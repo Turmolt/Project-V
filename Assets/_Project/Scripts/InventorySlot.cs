@@ -36,6 +36,7 @@ namespace BackwardsCap
             Display.color = item.GetComponent<SpriteRenderer>().color;
             Holding = item;
             qualityBar.Quality = item.Quality;
+            qualityBar.FinishedMark.enabled = item.ItemState == Item.State.Finished;
             qualityBar.gameObject.SetActive(true);
             return true;
         }
@@ -47,6 +48,7 @@ namespace BackwardsCap
             qualityBar.gameObject.SetActive(false);
             Display.color = Color.white;
             Display.sprite = blankSlotSprite;
+            qualityBar.FinishedMark.enabled = false;
             return item;
         }
 

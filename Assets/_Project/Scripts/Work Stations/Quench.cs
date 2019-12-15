@@ -14,7 +14,7 @@ namespace BackwardsCap
             if (item.ItemState == Item.State.Heated || item.ItemState == Item.State.Hammered)
             {
                 ParticleSystem.Play();
-                item.ItemState = Item.State.Finished;
+                item.SetFinished();
             }
             item.GetComponent<SpriteRenderer>().color = Color.white;
             Inventory.UpdateInventoryOrder();

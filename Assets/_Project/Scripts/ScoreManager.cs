@@ -26,10 +26,13 @@ namespace BackwardsCap
 
         public void AddPoints(float points)
         {
+            if (points == 0) return;
             served += 1;
             ServedDisplay.text = $"{served:00}/{targetServed}";
             score += points;
             ScoreDisplay.text = score.ToString();
+
+            if(served==targetServed)Debug.Log("You win!");
         }
 
     } 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class QualityBar : MonoBehaviour
 {
     public Image barImage;
+    public Image FinishedMark;
     private float _quality;
     public float Quality {
         get{
@@ -27,6 +28,14 @@ public class QualityBar : MonoBehaviour
     {
         //barImage = transform.Find("Bar").GetComponent<Image>();
         //barImage.fillAmount = Quality/100;
+        if (gameObject.transform.parent.parent.name == "SpeechBubble")
+        {
+            FinishedMark.enabled = true;
+        }
+        else
+        {
+            FinishedMark.enabled = false;
+        }
     }
 
 

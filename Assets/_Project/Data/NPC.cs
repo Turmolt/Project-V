@@ -19,7 +19,8 @@ public class NPC: MonoBehaviour   {
     public float MinimumTier;
     private int[] wants = new int[3];
     private Manager _manager;
-    
+
+    public bool Satisfied = false;
     
     public float ScoreMultiplier;
     
@@ -102,10 +103,14 @@ public class NPC: MonoBehaviour   {
                 score += baseQualityBonus * (receiving.Quality/(float)MinimumQuality) * .5f;
             }
 
+        Satisfied = true;
+
         return score;
     }
 
-    private void createNeed(){
+    private void createNeed()
+    {
+        Satisfied = false;
         TypeWanted = null;
         MaterialWanted = null;
         MinimumQuality = null;

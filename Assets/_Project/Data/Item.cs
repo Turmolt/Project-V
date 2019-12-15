@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Item: MonoBehaviour   {
@@ -35,6 +36,14 @@ public class Item: MonoBehaviour   {
 
     [HideInInspector] public float Quality;
 
+    private Image finishedCheck;
+
+    public void SetFinished()
+    {
+        ItemState = State.Finished;
+        finishedCheck.enabled = true;
+    }
+
     public void SetQuality(float quality)
     {
         Quality = quality;
@@ -59,6 +68,7 @@ public class Item: MonoBehaviour   {
         }
 
         qualityBar.Quality = Quality;
+        finishedCheck = qualityBar.FinishedMark;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 100;
         SpriteRenderer rend = GetComponent<SpriteRenderer>();

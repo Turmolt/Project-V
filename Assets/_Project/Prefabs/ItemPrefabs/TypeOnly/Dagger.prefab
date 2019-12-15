@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1894109333877494834}
   - component: {fileID: -7771807385732232271}
   m_Layer: 8
-  m_Name: Robe 2
+  m_Name: Dagger
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QualityBarPrefab: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
     type: 3}
+  Tier: 0
+  ItemState: 0
+  SwingsLeft: 0
   Type: 1
   Material: -1
   Rarity: 6
@@ -117,7 +120,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
+    oldSize: {x: 1.25, y: 1.25}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
