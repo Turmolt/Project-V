@@ -24,6 +24,7 @@ namespace BackwardsCap
 
         [Header("Audio Clips")]
         public AudioClip ItemPickupAudio;
+        public AudioClip CantPickup;
 
         public void Start()
         {
@@ -135,17 +136,18 @@ namespace BackwardsCap
                             var item = hit.transform.GetComponent<Item>();
                             if (Inventory.PickupItem(item))
                             {
-                                //TODO: Add audio here for picking up item!
+                                SoundManager.instance.ClipArrayVariation(ItemPickupAudio);
                             }
                             else
                             {
-                                //TODO: And here for if you don't pick it up
+                                SoundManager.instance.ClipArrayVariation(CantPickup);
                             }
                         }
                         else
                         {
                             Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
-                            //TODO: Also here if you don't pick it up
+
+                            SoundManager.instance.ClipArrayVariation(CantPickup);
                         }
                     }
                 }
