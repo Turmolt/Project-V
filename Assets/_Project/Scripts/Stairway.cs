@@ -23,13 +23,15 @@ namespace BackwardsCap
             }
         }
 
+
         void Travel()
         {
             Player.HasControl = false;
             FadeToBlack.DOFade(1f, 1f).OnComplete(() =>
             {
                 Player.transform.position = Destination.position;
-                SoundManager.instance.PlaySomething(MusicChoice);
+                if(MusicChoice)SoundManager.instance.PlaySomething(MusicChoice);
+                
                 FadeToBlack.DOFade(0f, 1f).OnComplete(() =>
                  {
                      Player.HasControl = true;
