@@ -10,6 +10,8 @@ public class Manager: MonoBehaviour
     public GameObject[] MaterialList;
     public GameObject[] TypeList;
     public GameObject AnyItem;
+
+    public List<GameObject> SpawnedItems = new List<GameObject>();
     public Tilemap FloorMap;
     public Tilemap[] NonFloorTilemaps;
     public GameObject ItemParent;   
@@ -34,7 +36,7 @@ public class Manager: MonoBehaviour
             totalItemWeight += ItemRarity[i];
         }
 
-        PopulateItems(ItemParent, FloorMap);
+        
         /*
         //NOT SURE IF SUPPOSED TO SORT HIGH>LOW or LOW>HIGH
         print("Before");
@@ -50,8 +52,18 @@ public class Manager: MonoBehaviour
         
     }
 
+    public void SpawnNewItems(){
+        foreach(GameObject g in SpawnedItems){
+            Destroy(g);
+        }
+        SpawnedItems.Clear();
+        
+        SpawnedItems = PopulateItems(ItemParent, FloorMap);
+    }
 
-    public  GameObject[] PopulateItems(GameObject parent, Tilemap floorMap){
+
+    public  List<GameObject> PopulateItems(GameObject parent, Tilemap floorMap){
+        List<GameObject> items = new List<GameObject>();;
         bool ignore = false;
         foreach(Vector3Int pos in floorMap.cellBounds.allPositionsWithin){
             ignore = false;   
@@ -64,11 +76,11 @@ public class Manager: MonoBehaviour
                }
 
                 if(UnityEngine.Random.Range(0.0f,1.0f)<chanceToSpawn && !ignore){
-                    Instantiate(randomItem(),pos + new Vector3(0.5f,0.5f),Quaternion.identity,parent.transform);
+                   items.Add(Instantiate(randomItem(),pos + new Vector3(0.5f,0.5f),Quaternion.identity,parent.transform));
                 }
            }
         }
-        return new GameObject[0];
+        return items;;
     }
 
     private  GameObject randomItem(){

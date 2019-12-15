@@ -7,6 +7,9 @@ TagManager:
   - Item
   - WorkStation
   - Anvil
+  - Seeking
+  - NPC
+  - Forge
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Items
   - Floor
   - WorkStations
-  - 
+  - Seeking
   - 
   - 
   - 

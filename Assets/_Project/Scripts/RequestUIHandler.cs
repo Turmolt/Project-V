@@ -5,10 +5,11 @@ using DG.Tweening;
 
 public class RequestUIHandler : MonoBehaviour
 {
+    private float startY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        startY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -18,9 +19,9 @@ public class RequestUIHandler : MonoBehaviour
     }
 
     public void Expand(){
-        transform.DOMoveY(-500,0.5f);
+        transform.DOMoveY(startY-520,0.5f);
     }
     public void Retract(){
-        transform.DOMoveY(50,0.5f);
+        transform.DOMoveY(startY,0.5f);
     }
 }

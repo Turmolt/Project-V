@@ -44,69 +44,6 @@ namespace BackwardsCap
             Movement();
         }
 
-        void PickupItem()
-        {
-            var rayPos = new Vector3(transform.position.x, transform.position.y, -5f) + InteractDirection();
-
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
-            if (hit.transform != null && hit.transform.CompareTag("WorkStation"))
-            {
-                var workStation = hit.transform.GetComponent<WorkStation>();
-                if (workStation.InMachine != null)
-                {
-                    Inventory.PickupItem(workStation.PopItem());
-                    return;
-                }
-            }
-
-            hit= Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
-            if (hit.transform != null && hit.transform.CompareTag("Item"))
-            {
-                var item = hit.transform.GetComponent<Item>();
-                Inventory.PickupItem(item);
-                return;
-            }
-
-            rayPos = new Vector3(transform.position.x, transform.position.y, -5f);
-            hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
-            if (hit.transform != null && hit.transform.CompareTag("Item"))
-            {
-                var item = hit.transform.GetComponent<Item>();
-                Inventory.PickupItem(item);
-                return;
-            }
-        }
-
-        bool CheckDirection(string dir)
-        {
-            return PlayerAnimator.Animator.GetCurrentAnimatorStateInfo(0).IsName(dir + " Idle") ||
-                   PlayerAnimator.Animator.GetCurrentAnimatorStateInfo(0).IsName(dir + " Walk");
-        } 
-
-        public Vector3 InteractDirection()
-        {
-            if (CheckDirection("Back"))
-            {
-                return new Vector2(0,1);
-            }
-            if (CheckDirection("Forward"))
-            {
-                return new Vector2(0, -1);
-            }
-            if (CheckDirection("Right"))
-            {
-                return new Vector2(1, 0);
-            }
-            if (CheckDirection("Left"))
-            {
-                return new Vector2(-1, 0);
-            }
-
-            Debug.LogError("[PlayerController]: No interaction direction found!");
-            return Vector3.zero;
-        }
-
-        
         void MouseHandler()
         {
             if (Input.GetMouseButtonDown(0))
