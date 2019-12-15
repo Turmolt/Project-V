@@ -35,7 +35,7 @@ namespace BackwardsCap
             Display.sprite = item.Image;
             Display.color = item.GetComponent<SpriteRenderer>().color;
             Holding = item;
-            qualityBar.barImage.fillAmount = item.Quality/5;
+            qualityBar.Quality = item.Quality;
             qualityBar.gameObject.SetActive(true);
             return true;
         }

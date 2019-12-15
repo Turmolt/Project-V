@@ -196,6 +196,7 @@ MonoBehaviour:
   ItemSpace: {fileID: 990860032}
   GameSlider: {fileID: 587961066}
   ScoreDisplay: {fileID: 1373408930}
+  DisplayCG: {fileID: 1333023078}
 --- !u!1 &61728483
 GameObject:
   m_ObjectHideFlags: 0

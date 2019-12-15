@@ -70,7 +70,7 @@ public class Forge : WorkStation
 
         if (duration >= damaged)
         {
-            InMachine.SetQuality( InMachine.Quality-0.2f);
+            InMachine.SetQuality( Mathf.Clamp(InMachine.Quality-0.2f,0f,10f));
         }
 
     }
