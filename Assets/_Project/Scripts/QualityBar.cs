@@ -30,11 +30,11 @@ public class QualityBar : MonoBehaviour
         //barImage.fillAmount = Quality/100;
         if (gameObject.transform.parent.parent.name == "SpeechBubble")
         {
-            FinishedMark.enabled = true;
+            if(FinishedMark)FinishedMark.enabled = true;
         }
         else
         {
-            FinishedMark.enabled = false;
+            if(FinishedMark)FinishedMark.enabled = false;
         }
     }
 
