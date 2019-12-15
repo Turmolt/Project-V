@@ -253,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2984672808617116399}
+  - component: {fileID: 5233493069519189703}
   m_Layer: 0
   m_Name: NPC Spots
   m_TagString: Untagged
@@ -279,6 +280,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5233493069519189703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633351905595772542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f588c75d03dfc34458f16a815a1a7746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path1:
+  - {fileID: 1202090119355022140}
+  - {fileID: 2476448939900991539}
+  - {fileID: 8091361729696534358}
+  - {fileID: 1653575441186363970}
+  Path2:
+  - {fileID: 1202090119355022140}
+  - {fileID: 2476448939900991539}
+  - {fileID: 8091361729696534358}
+  - {fileID: 6453861039256712752}
+  Path3:
+  - {fileID: 1202090119355022140}
+  - {fileID: 2476448939900991539}
+  - {fileID: 2179040371507204920}
+  Path4:
+  - {fileID: 1202090119355022140}
+  - {fileID: 2476448939900991539}
+  - {fileID: 4743478597975512694}
+  Path5:
+  - {fileID: 7518917661109860778}
+  - {fileID: 1111115525094236282}
+  - {fileID: 7639124125801295489}
+  Path6:
+  - {fileID: 7518917661109860778}
+  - {fileID: 1111115525094236282}
+  - {fileID: 2299875273252685271}
+  Path7:
+  - {fileID: 7518917661109860778}
+  - {fileID: 1111115525094236282}
+  - {fileID: 6855078039509618844}
+  - {fileID: 315998678982397631}
+  Path8:
+  - {fileID: 7518917661109860778}
+  - {fileID: 1111115525094236282}
+  - {fileID: 6855078039509618844}
+  - {fileID: 1349514817845124237}
 --- !u!1 &4743478597975512694
 GameObject:
   m_ObjectHideFlags: 0
