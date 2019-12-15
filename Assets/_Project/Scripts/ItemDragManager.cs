@@ -71,11 +71,37 @@ namespace BackwardsCap
             if (hit.transform != null)
             {
                 var workStation = hit.transform.GetComponent<WorkStation>();
+                if (workStation.CompareTag("Forge")&& Dragging.ItemState != Item.State.Normal) return (true, null);
+                
                 if (workStation.InMachine != null) return (true,null);
                 if (Vector3.Distance(Player.transform.position.xy(), new Vector3(hit.point.x, hit.point.y, 0)) < 2f)
                     return (true,workStation);
             }
             return (false,null);
+        }
+
+        NPC CheckIfOverNpc()
+        {
+            var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Seeking"));
+            if (hit.transform != null)
+            {
+                if (Vector3.Distance(Player.transform.position.xy(), new Vector3(hit.point.x, hit.point.y, 0)) < 2f)
+                {
+                    if (hit.transform.CompareTag("Seeking"))
+                    {
+                        return hit.transform.GetComponentInParent<NPC>();
+                    }
+                    else
+                    {
+                        return hit.transform.GetComponent<NPC>();
+                    }
+                }
+            }
+
+
+            return null;
         }
         
         bool CheckIfValidPlacement()
@@ -99,7 +125,15 @@ namespace BackwardsCap
             draggingRenderer.color = priorColor;
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
             var workStation = CheckIfOverValidMachine();
-            if (workStation.Item1)
+            var npc = CheckIfOverNpc();
+            if (npc != null)
+            {
+                var score = npc.ScoreItem(Dragging);
+                ScoreManager.instance.AddPoints(score);
+                Destroy(Dragging.gameObject);
+                inventory.UpdateInventoryOrder();
+            }
+            else if (workStation.Item1)
             {
                 if (workStation.Item2 != null)
                 {

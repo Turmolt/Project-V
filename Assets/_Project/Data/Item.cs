@@ -11,6 +11,8 @@ public class Item: MonoBehaviour   {
 
     public enum State { Normal, Heated, Hammered, Finished}
 
+    public int Tier;
+
     public State ItemState= State.Normal;
 
     public int SwingsLeft = 3;
@@ -68,6 +70,6 @@ public class Item: MonoBehaviour   {
         Type = type;
         Material = material;
         Quality = quality;
-        Image = image; 
+        Image = image;
     }
 }

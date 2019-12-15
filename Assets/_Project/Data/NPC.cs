@@ -16,7 +16,7 @@ public class NPC: MonoBehaviour   {
     public ItemType? TypeWanted = null;
     public ItemMaterial? MaterialWanted = null;
     public float? MinimumQuality = null;
-
+    public float MinimumTier;
     private int[] wants = new int[3];
     private Manager _manager;
     
@@ -32,13 +32,79 @@ public class NPC: MonoBehaviour   {
         //RequestCanvas = GetComponentInChildren<Canvas>();
         RequestCanvas.enabled = false;
         requestObject = displayRequest();
-        if(requestObject.GetComponentInChildren<Item>().Quality == 0){
-            
+        requestObject.tag = "Seeking";
+        requestObject.layer = LayerMask.NameToLayer("Seeking");
+        if (requestObject.GetComponentInChildren<Item>().Quality == 0)
+        {
             print("NoQual");
         }
         
         //displayRequest();
     }
+
+    public float ScoreItem(Item receiving)
+    {
+        Debug.Log($"Receiving: {receiving.ItemState}, Type: {receiving.Type}, T: {receiving.Tier}, Q: {receiving.Quality}");
+        Debug.Log($"Seeking: Type: {TypeWanted}, T: {MinimumTier}, Q: {MinimumTier}");
+        var tierBasePoints = 5f;
+        var baseQualityBonus = 5f;
+        var baseTypePoints = 5f;
+
+        if (receiving.ItemState != Item.State.Finished)
+        {
+            Debug.Log("Finish it first!");
+            tierBasePoints *= .25f;
+            baseQualityBonus *= .25f;
+        }
+        
+        var score = 0f;
+        
+        if (TypeWanted != null&& TypeWanted != ItemType.nil && receiving.Type != TypeWanted)
+        {
+            Debug.Log("Type mismatch");
+            return 0;
+        }
+        
+        score += baseTypePoints;
+
+        if (MaterialWanted != null)
+        {
+            if (receiving.Tier == MinimumTier)
+            {
+                Debug.Log("Tier =");
+                score += tierBasePoints;
+            }
+            else if (receiving.Tier > MinimumTier)
+            {
+                Debug.Log("Tier >");
+                score += 1.5f * tierBasePoints;
+            }
+            else
+            {
+                Debug.Log("Tier <");
+                score += .5f * tierBasePoints;
+            }
+        }
+
+        if(MinimumQuality != null)
+            if (receiving.Quality == MinimumQuality)
+            {
+                Debug.Log("Meets quality");
+                score += baseQualityBonus;
+            }else if (receiving.Quality > MinimumQuality)
+            {
+                Debug.Log("Exceeds quality!");
+                score += ((receiving.Quality - (float)MinimumQuality) * .25f) + 1f * baseQualityBonus;
+            }
+            else
+            {
+                Debug.Log("Doesnt meet quality");
+                score += baseQualityBonus * (receiving.Quality/(float)MinimumQuality) * .5f;
+            }
+
+        return score;
+    }
+
     private void createNeed(){
         TypeWanted = null;
         MaterialWanted = null;
@@ -175,7 +241,9 @@ public class NPC: MonoBehaviour   {
             //Mat and Type
             foreach(GameObject item in _manager.ItemList){
                 Item temp = item.GetComponent<Item>();
-                if(temp.Material == MaterialWanted && temp.Type == TypeWanted){
+                if(temp.Material == MaterialWanted && temp.Type == TypeWanted)
+                {
+                    MinimumTier = temp.Tier;
                     wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
                 }
             }
@@ -184,6 +252,7 @@ public class NPC: MonoBehaviour   {
             foreach (GameObject item in _manager.TypeList){
                 Item temp = item.GetComponent<Item>();
                 if(temp.Type == TypeWanted){
+                    MinimumTier = temp.Tier;
                     wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
                 }
 
@@ -194,6 +263,7 @@ public class NPC: MonoBehaviour   {
             foreach (GameObject item in _manager.MaterialList){
                 Item temp = item.GetComponent<Item>();
                 if(temp.Material == MaterialWanted){
+                    MinimumTier = temp.Tier;
                     wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
                 }
 
@@ -203,9 +273,10 @@ public class NPC: MonoBehaviour   {
         }
         if(wants[2] == 1){
             
-                Item temp = wantObject.GetComponent<Item>();
-                print("Quality: " + MinimumQuality);
-                temp.SetQuality((int)MinimumQuality);
+            Item temp = wantObject.GetComponent<Item>();
+            MinimumTier = temp.Tier;
+            print("Quality: " + MinimumQuality);
+            temp.SetQuality((int)MinimumQuality);
                 //temp.Quality = (float)MinimumQuality;
                 //print("Quality: " + temp.GetQuality());
             

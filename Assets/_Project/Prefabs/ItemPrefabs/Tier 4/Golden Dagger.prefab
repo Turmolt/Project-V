@@ -96,10 +96,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QualityBarPrefab: {fileID: 4094301063146681139, guid: ecd1a4462a1e825419b8c34d2877595b,
     type: 3}
+  Tier: 3
+  ItemState: 0
+  SwingsLeft: 0
   Type: 1
   Material: 5
   Rarity: 1
-  Quality: 0
+  Quality: 1
 --- !u!61 &-102254810007478160
 BoxCollider2D:
   m_ObjectHideFlags: 0
