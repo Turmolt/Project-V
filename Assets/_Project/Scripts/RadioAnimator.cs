@@ -7,13 +7,12 @@ public class RadioAnimator : MonoBehaviour
     [SerializeField] private Sprite[] frameArray;
     private int currentFrame;
     private float timer;
-    private float persistantTimer;
-    private AudioClip radioClip;
+    //private float persistentTimer;
 
 
     private void Awake()
     {
-        radioClip = GetComponent<AudioSource>().clip;
+        //radioClip = GetComponent<AudioSource>().clip;
     }
     private void Update()
     {
@@ -25,9 +24,9 @@ public class RadioAnimator : MonoBehaviour
             currentFrame = (currentFrame + 1) % frameArray.Length;
             gameObject.GetComponent<SpriteRenderer>().sprite = frameArray[currentFrame];
         }
-        if (radioClip.length < persistantTimer)
-        {
-            this.gameObject.SetActive(false);
-        }
+        //if (radioClip.length < persistentTimer)
+        //{
+        //    this.gameObject.SetActive(false);
+        //}
     }
 }
