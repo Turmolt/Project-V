@@ -9,6 +9,7 @@ public class Manager: MonoBehaviour
     public  GameObject[] ItemList;
     public GameObject[] MaterialList;
     public GameObject[] TypeList;
+    public GameObject AnyItem;
     public Tilemap FloorMap;
     public Tilemap[] NonFloorTilemaps;
     public GameObject ItemParent;   

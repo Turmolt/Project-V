@@ -203,7 +203,8 @@ public class NPC: MonoBehaviour   {
                     }
 
                 }
-
+            } else if(wants[0] == 0 && wants[1]==0){ 
+                    requestObject = Instantiate(_manager.AnyItem, bubble.position, Quaternion.identity, bubble.transform);
             }
             if(wants[2] == 1){
                 if(requestObject){
