@@ -56,7 +56,7 @@ public enum AccessoryType{
 */
 
 public enum ItemMaterial{
-	
+
 	Light = 0,
 	Tough = 1,
 	Iron = 2,
@@ -65,7 +65,7 @@ public enum ItemMaterial{
 	Gold = 5,
 	Wood = 6,
 	Bone = 7,
-	
+	Nil = -1,
 	
 	
 	

@@ -42,7 +42,7 @@ public class Item: MonoBehaviour   {
     private void Start()
     {
         if(qualityBar ==null) qualityBar = Instantiate(QualityBarPrefab,this.transform).GetComponent<QualityBar>();
-        qualityBar.Quality = Quality;
+        SetQuality(qualityBar.Quality);
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
         if(rend.sprite == null) rend.sprite = Image;
         else Image = rend.sprite;

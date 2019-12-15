@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 812259837029020090}
   - component: {fileID: 5472092155449027140}
-  - component: {fileID: 3238864185571150940}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -101,21 +100,18 @@ MonoBehaviour:
   - {fileID: 1894109333877494835, guid: 1c4d8bf2b45e8a04c93b34d5ac807457, type: 3}
   - {fileID: 1894109333877494835, guid: 5dad6e52f44484144ace8ed32911df4e, type: 3}
   TypeList: []
+  FloorMap: {fileID: 0}
+  NonFloorTilemaps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ItemParent: {fileID: 0}
   NumberOfMaterials: 8
   NumberOfItemTypes: 11
   minQuality: 1
   maxQaulity: 80
   chanceToSpawn: 0.03
---- !u!114 &3238864185571150940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314289184045857972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf523ad8bd0e4144db13babd186147be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floormap: {fileID: 0}
