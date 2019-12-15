@@ -42,6 +42,7 @@ namespace BackwardsCap
 
         private IEnumerator WaitForTitle()
         {
+
             logo.SetActive(true);
             yield return new WaitForSeconds(5f);
             logo.SetActive(false);
@@ -52,6 +53,7 @@ namespace BackwardsCap
         {
             UICG.alpha = 0f;
             NPCObject.SetActive(false);
+            GameCamera.enabled = false;
             StartCoroutine(WaitForIntro());
         }
 
