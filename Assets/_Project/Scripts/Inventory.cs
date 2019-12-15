@@ -11,10 +11,13 @@ namespace BackwardsCap
 
         public ItemDragManager DragManager;
 
+        private Manager _manager;
+
         [HideInInspector] public bool HoveringOverInventory = false;
 
         public void Start()
         {
+            _manager = GameObject.FindObjectOfType<Manager>();
             for (int i = 0; i < Slots.Length; i++)
             {
                 Slots[i].Initialize(this);
@@ -28,6 +31,7 @@ namespace BackwardsCap
             {
                 if (Slots[i].PickUp(item))
                 {
+                    _manager.SpawnedItems.Remove(item.gameObject);
                     item.gameObject.SetActive(false);
                     Debug.Log($"[Inventory]: Picking up {item.name} in slot {i}");
                     UpdateInventoryOrder();
@@ -54,6 +58,7 @@ namespace BackwardsCap
 
         public void ItemRemoved(Item item, InventorySlot slot)
         {
+            _manager.SpawnedItems.Add(item.gameObject);
             DragManager.StartDragging(item, slot);
         }
 
