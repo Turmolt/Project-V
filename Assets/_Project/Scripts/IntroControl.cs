@@ -26,6 +26,7 @@ namespace BackwardsCap
         public Camera GameCamera;
 
         public GameObject logo;
+        
 
 
 
@@ -72,6 +73,7 @@ namespace BackwardsCap
             {
                 PlayerRenderer.enabled = true;
                 Player.HasControl = true;
+                Skeleton.SetActive(false);
 
             });
 
