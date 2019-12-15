@@ -24,6 +24,8 @@ namespace BackwardsCap
 
         private InventorySlot itemWasIn;
 
+        private Color priorColor;
+
         void Start()
         {
             inventory = GetComponent<Inventory>();
@@ -41,6 +43,7 @@ namespace BackwardsCap
             itemWasIn = from;
             Dragging = item;
             draggingRenderer = item.gameObject.GetComponent<SpriteRenderer>();
+            priorColor = draggingRenderer.color;
             Dragging.gameObject.SetActive(true);
         }
 
@@ -60,24 +63,57 @@ namespace BackwardsCap
             }
         }
 
+        (bool,WorkStation) CheckIfOverValidMachine()
+        {
+            var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
+            if (hit.transform != null)
+            {
+                var workStation = hit.transform.GetComponent<WorkStation>();
+                if (workStation.InMachine != null) return (true,null);
+                if (Vector3.Distance(Player.transform.position.xy(), new Vector3(hit.point.x, hit.point.y, 0)) < 2f)
+                    return (true,workStation);
+            }
+
+            return (false,null);
+        }
+
         bool CheckIfValidPlacement()
         {
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
             RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("Floor"));
             if (hit.transform != null)
             {
                 if(Vector3.Distance(Player.transform.position.xy(),new Vector3(hit.point.x,hit.point.y,0))<2f)
                     return true;
             }
+
+
             return false;
         }
 
         void DropItem()
         {
             DraggingItem = false;
-            draggingRenderer.color = Color.white;
+            draggingRenderer.color = priorColor;
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            if (inventory.HoveringOverInventory || !CheckIfValidPlacement())
+            var workStation = CheckIfOverValidMachine();
+            if (workStation.Item1)
+            {
+                if (workStation.Item2 != null)
+                {
+                    workStation.Item2.LoadItem(Dragging);
+                    inventory.UpdateInventoryOrder();
+                }
+                else
+                {
+                    if (itemWasIn.PickUp(Dragging))
+                        Dragging.gameObject.SetActive(false);
+                }
+            }
+            else if (inventory.HoveringOverInventory || !CheckIfValidPlacement())
             {
                 Debug.Log("[ItemDragManager]: Failed to place item!");
                 if(itemWasIn.PickUp(Dragging))
@@ -85,7 +121,7 @@ namespace BackwardsCap
             }
             else
             {
-//                Debug.Log($"[ItemDragManager]: Dropped Item at {wp}");
+
                 Dragging.transform.position = wp.xy();
                 inventory.UpdateInventoryOrder();
             }
@@ -97,7 +133,8 @@ namespace BackwardsCap
         void FollowMouse()
         {
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            draggingRenderer.color = CheckIfValidPlacement() ? Color.green : Color.red;
+            var t = CheckIfOverValidMachine();
+            draggingRenderer.color = (!t.Item1&&CheckIfValidPlacement()) || (t.Item1 && t.Item2!=null)? Color.green : Color.red;
             Dragging.transform.position = wp.xy();
         }
 

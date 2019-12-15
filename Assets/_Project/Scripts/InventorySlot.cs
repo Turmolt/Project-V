@@ -32,8 +32,8 @@ namespace BackwardsCap
         public bool PickUp(Item item)
         {
             if (Holding != null) return false;
-            
             Display.sprite = item.Image;
+            Display.color = item.GetComponent<SpriteRenderer>().color;
             Holding = item;
             qualityBar.barImage.fillAmount = item.Quality/100f;
             qualityBar.gameObject.SetActive(true);
@@ -45,6 +45,7 @@ namespace BackwardsCap
             var item = Holding;
             Holding = null;
             qualityBar.gameObject.SetActive(false);
+            Display.color = Color.white;
             Display.sprite = blankSlotSprite;
             return item;
         }

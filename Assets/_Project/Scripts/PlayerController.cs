@@ -20,6 +20,11 @@ namespace BackwardsCap
 
         private float maxPickupDistance = 2f;
 
+        public AudioSource SoundEffectAS;
+
+        [Header("Audio Clips")]
+        public AudioClip ItemPickupAudio;
+
         public void Start()
         {
             mainCam = Camera.main;
@@ -46,7 +51,19 @@ namespace BackwardsCap
         void PickupItem()
         {
             var rayPos = new Vector3(transform.position.x, transform.position.y, -5f) + InteractDirection();
-            RaycastHit2D hit= Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
+
+            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
+            if (hit.transform != null && hit.transform.CompareTag("WorkStation"))
+            {
+                var workStation = hit.transform.GetComponent<WorkStation>();
+                if (workStation.InMachine != null)
+                {
+                    Inventory.PickupItem(workStation.PopItem());
+                    return;
+                }
+            }
+
+            hit= Physics2D.Raycast(rayPos, Vector2.zero, 100f, LayerMask.GetMask("Items"));
             if (hit.transform != null && hit.transform.CompareTag("Item"))
             {
                 var item = hit.transform.GetComponent<Item>();

@@ -8,6 +8,10 @@ public class Item: MonoBehaviour   {
     public Canvas QualityBarPrefab;
 
     private QualityBar qualityBar;
+
+    public enum State { Normal, Heated, Tempered}
+
+    public State ItemState= State.Normal;
     
     public Sprite Image{
         set{
