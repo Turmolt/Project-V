@@ -5,24 +5,33 @@ using UnityEngine;
 
 namespace BackwardsCap
 {
-    public class Stairway : MonoBehaviour
+    public class IntroControl : MonoBehaviour
     {
         public Transform Destination;
 
         public PlayerController Player;
 
+        public SpriteRenderer PlayerRenderer;
+
         public CanvasGroup FadeToBlack;
 
         public AudioClip MusicChoice;
 
-        void OnTriggerEnter2D(Collider2D col)
+        public AudioClip IntroClip;
+
+       
+
+        private IEnumerator WaitForIntro()
         {
-            if (col.CompareTag("Player"))
-            {
-                Travel();
-            }
+            PlayerRenderer.enabled = false;
+            yield return new WaitForSeconds(IntroClip.length);
+            Travel();
         }
 
+        private void Awake()
+        {
+            StartCoroutine(WaitForIntro());
+        }
 
         void Travel()
         {
@@ -32,11 +41,12 @@ namespace BackwardsCap
                 Player.transform.position = Destination.position;
                 SoundManager.instance.PlaySomething(MusicChoice);
                 FadeToBlack.DOFade(0f, 1f).OnComplete(() =>
-                 {
-                     Player.HasControl = true;
+                {
+                    PlayerRenderer.enabled = true;
+                    Player.HasControl = true;
 
-                 });
+                });
             });
         }
-    } 
+    }
 }
