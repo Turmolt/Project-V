@@ -31,9 +31,13 @@ public class NPC: MonoBehaviour   {
         RequestCanvas = Instantiate(RequestCanvas, this.transform);
         //RequestCanvas = GetComponentInChildren<Canvas>();
         RequestCanvas.enabled = false;
+        requestObject = displayRequest();
+        if(requestObject.GetComponentInChildren<Item>().Quality == 0){
+            
+            print("NoQual");
+        }
         
-        
-        displayRequest();
+        //displayRequest();
     }
     private void createNeed(){
         TypeWanted = null;
@@ -95,7 +99,7 @@ public class NPC: MonoBehaviour   {
     }
 
     private void randomQuality(){
-        MinimumQuality = Random.Range(0.5f,1.0f);
+        MinimumQuality = (float)Random.Range(3,6);
     }
     private void randomType(){
         TypeWanted = (ItemType)Random.Range(2,_manager.NumberOfItemTypes); 
@@ -161,76 +165,64 @@ public class NPC: MonoBehaviour   {
         Image = image; 
     }
 
-    public void displayRequest(){
+    public GameObject displayRequest(){
         RequestCanvas.enabled = true;
+        GameObject wantObject = new GameObject();
+
         Transform bubble = RequestCanvas.transform.Find("SpeechBubble");
-        if (requestObject == null){
-            if(wants[0] == 1 && wants[1] == 1){
-                //Mat and Type
-                foreach(GameObject item in _manager.ItemList){
-                    Item temp = item.GetComponent<Item>();
-                    if(temp.Material == MaterialWanted && temp.Type == TypeWanted){
-                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
-                        
-                        //Item temp2 = obj.GetComponent<Item>();
-                        // if(MinimumQuality != null){
-                        //     temp2.Quality = (float)MinimumQuality;
-                        // } else{
-                        //     Canvas qualityCan = obj.GetComponentInChildren<Canvas>();
-                        //     qualityCan.enabled = false;
-                        // }
-                        
-                        
-                        //break;
-                    }
-                }
-            } else if(wants[0] == 1){
-                //Type Only
-                foreach (GameObject item in _manager.TypeList){
-                    Item temp = item.GetComponent<Item>();
-                    if(temp.Type == TypeWanted){
-                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
-                    }
-
-                }
-
-            } else if(wants[1] == 1){
-                //Mats Only
-                foreach (GameObject item in _manager.MaterialList){
-                    Item temp = item.GetComponent<Item>();
-                    if(temp.Material == MaterialWanted){
-                        requestObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
-                    }
-
-                }
-            } else if(wants[0] == 0 && wants[1]==0){ 
-                    requestObject = Instantiate(_manager.AnyItem, bubble.position, Quaternion.identity, bubble.transform);
-            }
-            if(wants[2] == 1){
-                if(requestObject){
-                    Item temp = requestObject.GetComponent<Item>();
-                    temp.SetQuality((float)MinimumQuality);
-                    //temp.Quality = (float)MinimumQuality;
-                } else{
-
-                }
-                
-            } else{
-                if(requestObject){
-                    //QualityBar qualityBar = requestObject.GetComponentInChildren<QualityBar>();
-                    //qualityBar.gameObject.SetActive(false);
-                }
-            }
-            if(requestObject){
-                requestObject.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
-            }
             
-        }
+        if(wants[0] == 1 && wants[1] == 1){
+            //Mat and Type
+            foreach(GameObject item in _manager.ItemList){
+                Item temp = item.GetComponent<Item>();
+                if(temp.Material == MaterialWanted && temp.Type == TypeWanted){
+                    wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                }
+            }
+        } else if(wants[0] == 1){
+            //Type Only
+            foreach (GameObject item in _manager.TypeList){
+                Item temp = item.GetComponent<Item>();
+                if(temp.Type == TypeWanted){
+                    wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                }
 
-        //TODO: Material only items are spawning with incorrect Quality being shown on bar. Need to fix
+            }
+
+        } else if(wants[1] == 1){
+            //Mats Only
+            foreach (GameObject item in _manager.MaterialList){
+                Item temp = item.GetComponent<Item>();
+                if(temp.Material == MaterialWanted){
+                    wantObject = Instantiate(item, bubble.position, Quaternion.identity, bubble.transform);
+                }
+
+            }
+        } else { 
+                wantObject = Instantiate(_manager.AnyItem, bubble.position, Quaternion.identity, bubble.transform);
+        }
+        if(wants[2] == 1){
+            
+                Item temp = wantObject.GetComponent<Item>();
+                print("Quality: " + MinimumQuality);
+                temp.SetQuality((int)MinimumQuality);
+                //temp.Quality = (float)MinimumQuality;
+                //print("Quality: " + temp.GetQuality());
+            
+        } 
+        // } else{
+        //     if(wantObject){
+                
+        //         QualityBar qualityBar = wantObject.GetComponentInChildren<QualityBar>();
+        //         qualityBar.gameObject.SetActive(false);
+        //     }
+        // }
+
+        if(wantObject){
+            wantObject.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+        }        
         
-        
-        
+        return wantObject;
     }
     
 }
