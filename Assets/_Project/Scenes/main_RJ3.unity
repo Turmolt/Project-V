@@ -24912,6 +24912,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1894109333877494835, guid: 208909eee83b23b4a9f87518e5192b76,
         type: 3}
+    - target: {fileID: 5472092155449027140, guid: 73d5fd51e411c554ebce562d2f87cd95,
+        type: 3}
+      propertyPath: minQuality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472092155449027140, guid: 73d5fd51e411c554ebce562d2f87cd95,
+        type: 3}
+      propertyPath: maxQaulity
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73d5fd51e411c554ebce562d2f87cd95, type: 3}
 --- !u!224 &3636939922264272314
@@ -25366,6 +25376,8 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 6777792124948985503}
   HasControl: 1
   Inventory: {fileID: 961556786}
+  SoundEffectAS: {fileID: 0}
+  ItemPickupAudio: {fileID: 0}
 --- !u!4 &9055060209264530700
 Transform:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ public class Manager: MonoBehaviour
     private int totalItemWeight;
     public  int NumberOfMaterials = 8;
     public  int NumberOfItemTypes = 11;
-    public  float minQuality = 1;
-    public  float maxQaulity = 80;
+    public  float minQuality = 1.0f;
+    public  float maxQaulity = 5.0f;
     public  float chanceToSpawn = 0.2f;
     //public  float populationWeight = 0.1f;
 
@@ -82,7 +82,7 @@ public class Manager: MonoBehaviour
             
             currentWeight += i.Rarity;
             if (randomWeight <= currentWeight) {
-                i.SetQuality(UnityEngine.Random.Range(minQuality,maxQaulity));
+                i.SetQuality((float)UnityEngine.Random.Range((int)minQuality,(int)maxQaulity+1));
                 //print(g.name);
                 return g; // selected one
             }

@@ -9,10 +9,12 @@ public class Item: MonoBehaviour   {
 
     private QualityBar qualityBar;
 
-    public enum State { Normal, Heated, Tempered}
+    public enum State { Normal, Heated, Hammered, Tempered}
 
     public State ItemState= State.Normal;
-    
+
+    public int SwingsLeft = 3;
+
     public Sprite Image{
         set{
             _image = value;
@@ -29,12 +31,13 @@ public class Item: MonoBehaviour   {
 
     public int Rarity;
 
-    [Range(0,100)][HideInInspector] public float Quality;
+    [HideInInspector] public float Quality;
 
     public void SetQuality(float quality)
     {
         Quality = quality;
         if (qualityBar != null) qualityBar.Quality = Quality;
+        
     }
 
     public float GetQuality()
