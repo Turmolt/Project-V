@@ -75,10 +75,9 @@ namespace BackwardsCap
                 if (Vector3.Distance(Player.transform.position.xy(), new Vector3(hit.point.x, hit.point.y, 0)) < 2f)
                     return (true,workStation);
             }
-
             return (false,null);
         }
-
+        
         bool CheckIfValidPlacement()
         {
             var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);

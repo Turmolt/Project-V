@@ -113,7 +113,7 @@ namespace BackwardsCap
                 var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
                 RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
-                if (hit.transform != null && hit.transform.CompareTag("WorkStation"))
+                if (hit.transform != null)
                 {
                     var workStation = hit.transform.GetComponent<WorkStation>();
                     if (workStation.InMachine != null)
@@ -147,6 +147,22 @@ namespace BackwardsCap
                             Debug.Log($"[PlayerController]: Item too far to pick up! {distance}m away");
                             //TODO: Also here if you don't pick it up
                         }
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                var wp = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+                RaycastHit2D hit = Physics2D.Raycast(wp, Vector2.zero, 100f, LayerMask.GetMask("WorkStations"));
+                if (hit.transform != null && hit.transform.CompareTag("Anvil"))
+                {
+                    var anvil = hit.transform.GetComponent<Anvil>();
+                    if (anvil.InMachine != null)
+                    {
+                        anvil.Hammer();
+                        return;
                     }
                 }
             }

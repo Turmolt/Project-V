@@ -22,6 +22,12 @@ public class Forge : WorkStation
     {
         GoodMeter.fillAmount = 1.0f - (target / (damaged + barBuffer));
         BadMeter.fillAmount = 1.0f - (damaged / (damaged + barBuffer));
+        DisplayCG.alpha = 0f;
+    }
+
+    public bool CanLoad(Item item)
+    {
+        return InMachine == null && item.ItemState == Item.State.Normal;
     }
 
     public override void LoadItem(Item item)
@@ -35,6 +41,7 @@ public class Forge : WorkStation
     public override Item PopItem()
     {
         DisplayCG.DOFade(0f, 0.25f);
+        if (InMachine.ItemState != Item.State.Heated) loadedSpriteRenderer.color = Color.white;
         return base.PopItem();
     }
 
@@ -57,6 +64,7 @@ public class Forge : WorkStation
         if (duration >= target && InMachine.ItemState!=Item.State.Heated)
         {
             InMachine.ItemState = Item.State.Heated;
+            InMachine.SwingsLeft = 3;
             Debug.Log("[Forge]: Ding! Your fries are ready");
         }
 
